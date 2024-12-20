@@ -14,6 +14,12 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-SmartCart-SmartCartTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SmartCart-SmartCartTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		45E57C6CA01443D6BB85A0C3 /* Orbitron-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4970EBB2A77405594F98F92 /* Orbitron-Black.ttf */; };
+		0E1A9DFB713540A7ACCBDA48 /* Orbitron-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D3E52EF1DC4DA7836DE058 /* Orbitron-Bold.ttf */; };
+		A780B31CDDDF4F7480C52B07 /* Kanit-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2058F80B95214A0B8675EB11 /* Kanit-Bold.ttf */; };
+		29A5A73DD9FE4853832A757D /* Kanit-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB18A0AB28D54900AC77AF60 /* Kanit-Light.ttf */; };
+		DA2E3CD1A5134F6DB640BE06 /* Kanit-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9A42AB54B4D4591803CA538 /* Kanit-Medium.ttf */; };
+		7608D70A5EF648EDBFBDBB65 /* Kanit-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF11F475B7149E0AB35139F /* Kanit-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +51,12 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SmartCart/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SmartCart-SmartCartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCart-SmartCartTests.release.xcconfig"; path = "Target Support Files/Pods-SmartCart-SmartCartTests/Pods-SmartCart-SmartCartTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		D4970EBB2A77405594F98F92 /* Orbitron-Black.ttf */ = {isa = PBXFileReference; name = "Orbitron-Black.ttf"; path = "../src/assets/fonts/Orbitron-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		04D3E52EF1DC4DA7836DE058 /* Orbitron-Bold.ttf */ = {isa = PBXFileReference; name = "Orbitron-Bold.ttf"; path = "../src/assets/fonts/Orbitron-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2058F80B95214A0B8675EB11 /* Kanit-Bold.ttf */ = {isa = PBXFileReference; name = "Kanit-Bold.ttf"; path = "../src/assets/fonts/Kanit-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CB18A0AB28D54900AC77AF60 /* Kanit-Light.ttf */ = {isa = PBXFileReference; name = "Kanit-Light.ttf"; path = "../src/assets/fonts/Kanit-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B9A42AB54B4D4591803CA538 /* Kanit-Medium.ttf */ = {isa = PBXFileReference; name = "Kanit-Medium.ttf"; path = "../src/assets/fonts/Kanit-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8BF11F475B7149E0AB35139F /* Kanit-Thin.ttf */ = {isa = PBXFileReference; name = "Kanit-Thin.ttf"; path = "../src/assets/fonts/Kanit-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +136,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				DE215E29B2E54C60BB22B712 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +162,20 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		DE215E29B2E54C60BB22B712 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				D4970EBB2A77405594F98F92 /* Orbitron-Black.ttf */,
+				04D3E52EF1DC4DA7836DE058 /* Orbitron-Bold.ttf */,
+				2058F80B95214A0B8675EB11 /* Kanit-Bold.ttf */,
+				CB18A0AB28D54900AC77AF60 /* Kanit-Light.ttf */,
+				B9A42AB54B4D4591803CA538 /* Kanit-Medium.ttf */,
+				8BF11F475B7149E0AB35139F /* Kanit-Thin.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +272,12 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				45E57C6CA01443D6BB85A0C3 /* Orbitron-Black.ttf in Resources */,
+				0E1A9DFB713540A7ACCBDA48 /* Orbitron-Bold.ttf in Resources */,
+				A780B31CDDDF4F7480C52B07 /* Kanit-Bold.ttf in Resources */,
+				29A5A73DD9FE4853832A757D /* Kanit-Light.ttf in Resources */,
+				DA2E3CD1A5134F6DB640BE06 /* Kanit-Medium.ttf in Resources */,
+				7608D70A5EF648EDBFBDBB65 /* Kanit-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
