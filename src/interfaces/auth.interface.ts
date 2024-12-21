@@ -12,14 +12,14 @@ export interface LoginResponse {
 export interface LoginRequest {
   email: string;
   password: string;
-  fingerprintId?: string
+  fingerprintId?: string;
 }
 
 export interface RegisterRequest {
   name: string;
   email: string;
   password: string;
-  fingerprintId?: string
+  fingerprintId?: string;
 }
 
 export interface RegisterResponse {
@@ -29,4 +29,19 @@ export interface RegisterResponse {
     id: string;
     email: string;
   };
+}
+
+
+export interface AuthProviderProps {
+  children: React.ReactNode;
+}
+
+export interface AuthContextProps {
+  isAuthenticated: boolean;
+  signOut: () => Promise<void>;
+  userId: string | null;
+  token: string | null;
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
+  setToken: (token: string | null) => void;
+  setUserId: (userId: string | null) => void;
 }
