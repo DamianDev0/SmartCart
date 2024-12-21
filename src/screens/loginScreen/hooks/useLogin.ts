@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import authService from '../../../services/authService';
-import { RegisterRequest } from '../../../interfaces/auth.interface';
+import { LoginRequest } from '../../../interfaces/auth.interface';
 import { ApiError } from '../../../utils/errorHandler';
 import useNavigation from '../../../hooks/useNavigation';
+import AuthContext from '../../../context/authContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const useRegister = () => {
+const useLogin = () => {
   const [formState, setFormState] = useState({
-    name: '',
     email: '',
     password: '',
     fingerprintId: '',
@@ -16,6 +16,7 @@ const useRegister = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isBiometricSupported, setIsBiometricSupported] = useState<boolean>(false);
+  const { setToken, setUserId, setIsAuthenticated } = useContext(AuthContext);
   const navigation = useNavigation();
   const rnBiometrics = new ReactNativeBiometrics();
 
@@ -39,7 +40,36 @@ const useRegister = () => {
     }));
   };
 
-  const registerWithFingerprint = async () => {
+  const login = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const loginData: LoginRequest = {
+        email: formState.email,
+        password: formState.password,
+        fingerprintId: formState.fingerprintId,
+      };
+
+      const response = await authService.login(loginData);
+
+      if ('statusCode' in response) {
+        setError(response.message);
+      } else {
+        setToken(response.data.accessToken);
+        setUserId(response.data.id);
+        setIsAuthenticated(true);
+        navigation.navigate('Onboarding');
+      }
+    } catch (err) {
+      const apiError = err as ApiError;
+      setError(apiError.message || 'An error occurred during login');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loginWithFingerprint = async () => {
     setLoading(true);
     setError(null);
 
@@ -50,20 +80,18 @@ const useRegister = () => {
         return;
       }
 
+      const publicKey = await AsyncStorage.getItem('publicKey');
+      if (!publicKey) {
+        setError('Biometric key not found. Please register first.');
+        setLoading(false);
+        return;
+      }
+
       const { success, error: biometricError } = await rnBiometrics.simplePrompt({
-        promptMessage: 'Scan your fingerprint to register',
+        promptMessage: 'Scan your fingerprint to login',
       });
 
       if (success) {
-        const keyPairResult = await rnBiometrics.createKeys();
-        if (!keyPairResult.publicKey) {
-          setError('Failed to generate keys');
-          setLoading(false);
-          return;
-        }
-
-        await AsyncStorage.setItem('publicKey', keyPairResult.publicKey);
-
         const payload = 'register_fingerprint';
         const signatureResult = await rnBiometrics.createSignature({
           promptMessage: 'Sign in with fingerprint',
@@ -71,19 +99,21 @@ const useRegister = () => {
         });
 
         if (signatureResult.success) {
-          const registerData: RegisterRequest = {
-            name: formState.name,
+          const loginData: LoginRequest = {
             email: formState.email,
-            password: formState.password,
+            password: '',
             fingerprintId: signatureResult.signature,
           };
 
-          const response = await authService.register(registerData);
+          const response = await authService.login(loginData);
 
           if ('statusCode' in response) {
             setError(response.message);
           } else {
-            navigation.navigate('Login');
+            setToken(response.data.accessToken);
+            setUserId(response.data.id);
+            setIsAuthenticated(true);
+            navigation.navigate('Onboarding');
           }
         } else {
           setError('Failed to create biometric signature');
@@ -93,19 +123,26 @@ const useRegister = () => {
       }
     } catch (err) {
       const apiError = err as ApiError;
-      setError(apiError.message || 'An error occurred during registration');
+      setError(apiError.message || 'An error occurred during login');
     } finally {
       setLoading(false);
     }
   };
 
+  const handleGoToSignup = () => {
+    navigation.navigate('SignUp');
+  };
+
   return {
     formState,
     handleChange,
-    registerWithFingerprint,
+    login,
+    loginWithFingerprint,
     loading,
     error,
+    isBiometricSupported,
+    handleGoToSignup,
   };
 };
 
-export default useRegister;
+export default useLogin;

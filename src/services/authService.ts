@@ -14,6 +14,7 @@ const authService = {
       return response.data;
     } catch (error) {
       const apiError = handleApiError(error);
+      console.log(apiError)
       return apiError;
     }
   },
