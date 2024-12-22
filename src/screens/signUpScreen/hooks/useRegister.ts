@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import authService from '../../../services/authService';
-import { RegisterRequest } from '../../../interfaces/auth.interface';
-import { ApiError } from '../../../utils/errorHandler';
+import {RegisterRequest} from '../../../interfaces/auth.interface';
+import {ApiError} from '../../../utils/errorHandler';
 import useNavigation from '../../../hooks/useNavigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {validateForm} from '../../../utils/validateForm';
 
 const useRegister = () => {
   const [formState, setFormState] = useState({
@@ -15,21 +16,23 @@ const useRegister = () => {
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [isBiometricSupported, setIsBiometricSupported] = useState<boolean>(false);
+  const [isBiometricSupported, setIsBiometricSupported] =
+    useState<boolean>(false);
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
   const navigation = useNavigation();
   const rnBiometrics = new ReactNativeBiometrics();
 
   useEffect(() => {
     const checkBiometricSupport = async () => {
       try {
-        const { available } = await rnBiometrics.isSensorAvailable();
+        const {available} = await rnBiometrics.isSensorAvailable();
         setIsBiometricSupported(available);
       } catch (err) {
         setIsBiometricSupported(false);
       }
     };
     checkBiometricSupport();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (field: string, value: string) => {
@@ -39,7 +42,20 @@ const useRegister = () => {
     }));
   };
 
+  const resetForm = () => {
+    setFormState({
+      name: '',
+      email: '',
+      password: '',
+      fingerprintId: '',
+    });
+  };
+
   const registerWithFingerprint = async () => {
+    if (!validateForm(formState, setError)) {
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -50,7 +66,7 @@ const useRegister = () => {
         return;
       }
 
-      const { success, error: biometricError } = await rnBiometrics.simplePrompt({
+      const {success, error: biometricError} = await rnBiometrics.simplePrompt({
         promptMessage: 'Scan your fingerprint to register',
       });
 
@@ -83,7 +99,12 @@ const useRegister = () => {
           if ('statusCode' in response) {
             setError(response.message);
           } else {
-            navigation.navigate('Login');
+            setShowSuccessModal(true);
+            setTimeout(() => {
+              setShowSuccessModal(false);
+              resetForm();
+              navigation.navigate('Login');
+            }, 1500);
           }
         } else {
           setError('Failed to create biometric signature');
@@ -105,6 +126,8 @@ const useRegister = () => {
     registerWithFingerprint,
     loading,
     error,
+    showSuccessModal,
+    setShowSuccessModal,
   };
 };
 

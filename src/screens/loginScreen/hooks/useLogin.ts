@@ -1,8 +1,8 @@
-import { useState, useEffect, useContext } from 'react';
+import {useState, useEffect, useContext} from 'react';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import authService from '../../../services/authService';
-import { LoginRequest } from '../../../interfaces/auth.interface';
-import { ApiError } from '../../../utils/errorHandler';
+import {LoginRequest} from '../../../interfaces/auth.interface';
+import {ApiError} from '../../../utils/errorHandler';
 import useNavigation from '../../../hooks/useNavigation';
 import AuthContext from '../../../context/authContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,22 +15,23 @@ const useLogin = () => {
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [isBiometricSupported, setIsBiometricSupported] = useState<boolean>(false);
-  const { setToken, setUserId, setIsAuthenticated } = useContext(AuthContext);
+  const [isBiometricSupported, setIsBiometricSupported] =
+    useState<boolean>(false);
+  const {setToken, setUserId, setIsAuthenticated} = useContext(AuthContext);
   const navigation = useNavigation();
   const rnBiometrics = new ReactNativeBiometrics();
 
   useEffect(() => {
     const checkBiometricSupport = async () => {
       try {
-        const { available } = await rnBiometrics.isSensorAvailable();
+        const {available} = await rnBiometrics.isSensorAvailable();
         setIsBiometricSupported(available);
       } catch (err) {
         setIsBiometricSupported(false);
       }
     };
     checkBiometricSupport();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (field: string, value: string) => {
@@ -87,7 +88,7 @@ const useLogin = () => {
         return;
       }
 
-      const { success, error: biometricError } = await rnBiometrics.simplePrompt({
+      const {success, error: biometricError} = await rnBiometrics.simplePrompt({
         promptMessage: 'Scan your fingerprint to login',
       });
 
@@ -129,10 +130,6 @@ const useLogin = () => {
     }
   };
 
-  const handleGoToSignup = () => {
-    navigation.navigate('SignUp');
-  };
-
   return {
     formState,
     handleChange,
@@ -141,7 +138,6 @@ const useLogin = () => {
     loading,
     error,
     isBiometricSupported,
-    handleGoToSignup,
   };
 };
 
