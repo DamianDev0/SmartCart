@@ -19,7 +19,7 @@ const OnboardingScreen = () => {
   const navigation = useNavigation();
 
   const handleSkipOrDone = () => {
-    navigation.navigate('Login');
+    navigation.navigate('Auth');
   };
 
   const SkipButton = ({...props}) => (
@@ -27,7 +27,6 @@ const OnboardingScreen = () => {
       <Text style={styles.skipText}>Skip</Text>
     </TouchableOpacity>
   );
-
 
   const NextButton = ({...props}) => (
     <TouchableOpacity style={styles.nextButton} {...props}>
@@ -66,7 +65,7 @@ const OnboardingScreen = () => {
           backgroundColor: primaryColor,
           image: (
             <Image
-              source={require('../../assets/img/chairGreen.png')}
+              source={require('../../assets/img/welcome.png')}
               style={styles.image}
             />
           ),
@@ -79,7 +78,7 @@ const OnboardingScreen = () => {
           backgroundColor: primaryColor,
           image: (
             <Image
-              source={require('../../assets/img/sweether.png')}
+              source={require('../../assets/img/chart.png')}
               style={styles.image}
             />
           ),
@@ -93,7 +92,7 @@ const OnboardingScreen = () => {
           backgroundColor: primaryColor,
           image: (
             <Image
-              source={require('../../assets/img/bag2.png')}
+              source={require('../../assets/img/shopping2.png')}
               style={styles.imagebag}
             />
           ),
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    width: width * 1,
+    width: width * 0.9,
     height: height * 0.5,
     resizeMode: 'contain',
   },
@@ -134,7 +133,7 @@ const styles = StyleSheet.create({
     maxWidth: width * 0.8,
   },
   imagebag: {
-    width: width * 1.5,
+    width: width * 1,
     height: height * 0.5,
     resizeMode: 'contain',
     alignSelf: 'center',
