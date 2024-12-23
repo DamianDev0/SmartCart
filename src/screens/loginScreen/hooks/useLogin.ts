@@ -60,7 +60,7 @@ const useLogin = () => {
         setToken(response.data.accessToken);
         setUserId(response.data.id);
         setIsAuthenticated(true);
-        navigation.navigate('Onboarding');
+        navigation.navigate('Home');
       }
     } catch (err) {
       const apiError = err as ApiError;
@@ -114,7 +114,7 @@ const useLogin = () => {
             setToken(response.data.accessToken);
             setUserId(response.data.id);
             setIsAuthenticated(true);
-            navigation.navigate('Onboarding');
+            navigation.navigate('Home');
           }
         } else {
           setError('Failed to create biometric signature');

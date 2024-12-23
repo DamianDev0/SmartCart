@@ -5,7 +5,7 @@ import {
   RegisterRequest,
   RegisterResponse,
 } from '../interfaces/auth.interface';
-import { handleApiError, ApiError } from '../utils/errorHandler';
+import {handleApiError, ApiError} from '../utils/errorHandler';
 
 const authService = {
   login: async (data: LoginRequest): Promise<LoginResponse | ApiError> => {
@@ -14,7 +14,6 @@ const authService = {
       return response.data;
     } catch (error) {
       const apiError = handleApiError(error);
-      console.log(apiError)
       return apiError;
     }
   },
