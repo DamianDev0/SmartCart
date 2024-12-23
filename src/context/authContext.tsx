@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
+// AuthContext.js
+import React, {createContext, useState, useEffect, useContext} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   AuthContextProps,
@@ -15,7 +16,7 @@ const AuthContext = createContext<AuthContextProps>({
   setUserId: () => {},
 });
 
-export const AuthProvider = ({ children }: AuthProviderProps) => {
+export const AuthProvider = ({children}: AuthProviderProps) => {
   const [token, setToken] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -24,30 +25,61 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const loadAuthState = async () => {
       const storedToken = await AsyncStorage.getItem('authToken');
       const storedUserId = await AsyncStorage.getItem('userId');
+      const storedIsAuthenticated = await AsyncStorage.getItem(
+        'isAuthenticated',
+      );
 
-      if (storedToken && storedUserId) {
+      if (storedToken && storedUserId && storedIsAuthenticated === 'true') {
         setToken(storedToken);
         setUserId(storedUserId);
         setIsAuthenticated(true);
+        console.log('User is authenticated');
+      } else {
+        console.log('User is not authenticated');
       }
     };
 
     loadAuthState();
   }, []);
 
+  useEffect(() => {
+    const saveAuthState = async () => {
+      await AsyncStorage.setItem('authToken', token || '');
+      await AsyncStorage.setItem('userId', userId || '');
+      await AsyncStorage.setItem(
+        'isAuthenticated',
+        isAuthenticated ? 'true' : 'false',
+      );
+    };
+
+    saveAuthState();
+  }, [token, userId, isAuthenticated]);
+
   const signOut = async () => {
     await AsyncStorage.removeItem('authToken');
     await AsyncStorage.removeItem('userId');
+    await AsyncStorage.removeItem('isAuthenticated');
     setToken(null);
     setUserId(null);
     setIsAuthenticated(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, signOut, userId, token, setIsAuthenticated, setToken, setUserId }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        signOut,
+        userId,
+        token,
+        setIsAuthenticated,
+        setToken,
+        setUserId,
+      }}>
       {children}
     </AuthContext.Provider>
   );
 };
+
+export const useAuth = () => useContext(AuthContext);
 
 export default AuthContext;
