@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     padding: 20,
-    paddingBottom: 20,
+    paddingBottom: 40,
   },
   errorContainer: {
     flex: 1,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
     textAlign: 'center',
-  },}
+  },
   title: {
     fontSize: 14,
     fontFamily: fontTitle,

@@ -14,6 +14,7 @@ import {
   fontSubtitleBold,
   fontTextLigth,
   fontTitle,
+  secondaryColor,
 } from '../../../utils/styles';
 
 const {width} = Dimensions.get('screen');
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
   },
   itemStatus: {
     fontSize: 18,
-    color: 'gray',
+    color: secondaryColor,
     fontFamily: fontSubtitleBold,
     marginVertical: 5,
   },
