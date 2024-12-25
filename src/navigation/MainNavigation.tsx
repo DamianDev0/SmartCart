@@ -10,7 +10,7 @@ enableScreens();
 const MainRoutes = () => {
   const { isAuthenticated } = useAuth();
 
-  console.log('Is user authenticated:', isAuthenticated);
+
 
   return (
     <NavigationContainer>

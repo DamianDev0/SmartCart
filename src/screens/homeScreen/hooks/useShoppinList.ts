@@ -19,12 +19,12 @@ const useShoppingLists = () => {
       setLoading(true);
       if (token) {
         const response = await shoppingListService.getShoppingLists(token);
-        console.log('Response:', response);
+
         if ((response as ApiError).statusCode) {
           setError((response as ApiError).message);
         } else {
           const data = (response as ApiResponse<ShoppingListResponse[]>).data;
-          console.log('Data:', data);
+
           setShoppingLists(data);
         }
       }

@@ -33,9 +33,7 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
         setToken(storedToken);
         setUserId(storedUserId);
         setIsAuthenticated(true);
-        console.log('User is authenticated');
       } else {
-        console.log('User is not authenticated');
       }
     };
 

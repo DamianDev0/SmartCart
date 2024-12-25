@@ -1,5 +1,5 @@
 // ShoppingListComponent.tsx
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,19 +7,20 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from 'react-native';
-import { ShoppingListResponse } from '../../../interfaces/shoppinList.interface';
+import {ShoppingListResponse} from '../../../interfaces/shoppinList.interface';
 import useShoppingLists from '../hooks/useShoppinList';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import {
   fontTextLigth,
   fontTitle,
   secondaryColorLigth,
   width,
 } from '../../../utils/styles';
-import { CustomToast } from '../../../components/customToast';
+import {CustomToast} from '../../../components/customToast';
 
 const ShoppingListComponent: React.FC = () => {
-  const { shoppingLists, loading, error } = useShoppingLists();
+  const {shoppingLists, loading, error} = useShoppingLists();
 
   useEffect(() => {
     if (error) {
@@ -49,9 +50,14 @@ const ShoppingListComponent: React.FC = () => {
       <FlatList
         data={shoppingLists}
         keyExtractor={(item: ShoppingListResponse) => item.id}
-        renderItem={({ item }: { item: ShoppingListResponse }) => (
+        renderItem={({item}: {item: ShoppingListResponse}) => (
           <View style={styles.itemContainer}>
-            <Icon name="shopping-cart" size={30} color="#000" style={styles.icon} />
+            <Icon
+              name="cart-outline"
+              size={30}
+              color="#000"
+              style={styles.icon}
+            />
             <View style={styles.textContainer}>
               <Text style={styles.itemTitle}>{item.name}</Text>
               <Text style={styles.itemContext}>{item.context}</Text>
@@ -67,7 +73,7 @@ const ShoppingListComponent: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.45,
+    flex: 1,
     justifyContent: 'flex-end',
     backgroundColor: secondaryColorLigth,
     borderTopLeftRadius: 25,
@@ -96,7 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 5,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowRadius: 2,
   },
@@ -128,12 +134,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
     textAlign: 'center',
-  },
+  },}
   title: {
     fontSize: 14,
     fontFamily: fontTitle,
-    marginBottom: 10,
-
+    marginBottom: 20,
+    textAlign: 'center',
     color: '#000',
   },
 });
