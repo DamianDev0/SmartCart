@@ -24,7 +24,7 @@ const HeaderHome = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.4,
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: width * 0.15,
-    height: height * 0.08,
+    width: width * 0.12,
+    height: height * 0.07,
     resizeMode: 'contain',
     marginRight: 1,
   },
   welcomeText: {
-    fontSize: 14,
+    fontSize: 13,
     fontFamily: fontSubtitleBold,
     color: '#000',
   },
