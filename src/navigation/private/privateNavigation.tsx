@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationRoutes} from '../../types/navigation.types';
-import HomeScreen from '../../screens/homeScreen/homeScreen';
+import PrivateTabs from '../components/privateTab';
 
 const Stack = createNativeStackNavigator<NavigationRoutes>();
 
@@ -10,7 +10,7 @@ const PublicRoutes = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
-        component={HomeScreen}
+        component={PrivateTabs}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
