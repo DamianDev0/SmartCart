@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
-import { fontTextLigth } from '../utils/styles';
+import {fontTextLigth} from '../utils/styles';
 
 interface GenericButtonProps {
   title: string;
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontFamily: fontTextLigth
+    fontFamily: fontTextLigth,
   },
 });
 
