@@ -5,6 +5,7 @@ export interface ItemRequest {
   description: string;
   amount: number;
   status: string;
+  category: string;
 }
 
 export interface ItemResponse {
@@ -13,23 +14,10 @@ export interface ItemResponse {
   description: string | null;
   quantity: number;
   category: string;
-  amount: string;
+  amount: number;
   status: string;
   createdAt: string;
   updatedAt: string;
-  shoppingList: {
-    id: string;
-    name: string;
-    context: string;
-    createdAt: string;
-    updatedAt: string;
-    user: {
-      id: string;
-      email: string;
-      name: string;
-      fingerprintId: string;
-    };
-  };
 }
 
 

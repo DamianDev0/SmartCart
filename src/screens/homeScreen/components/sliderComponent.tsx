@@ -4,8 +4,8 @@ import {
   Text,
   ActivityIndicator,
   StyleSheet,
-  Dimensions,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,12 +17,13 @@ import {
   fontTitle,
   height,
   secondaryColor,
+  width,
 } from '../../../utils/styles';
-
-const {width} = Dimensions.get('screen');
+import useNavigation from '../../../hooks/useNavigation'; // Importar el hook personalizado
 
 const RecentItemsComponent = () => {
   const {recentItems, loading, error} = useRecentItems();
+  const navigation = useNavigation();
 
   if (loading) {
     return <ActivityIndicator size="large" color="#000" />;
@@ -49,7 +50,21 @@ const RecentItemsComponent = () => {
   }
 
   const renderCarouselItem = ({item}: {item: ItemResponse}) => (
-    <View style={styles.carouselItem}>
+    <TouchableOpacity
+      style={styles.carouselItem}
+      onPress={() =>
+        navigation.navigate('ItemDetails', {
+          id: item.id,
+          name: item.name,
+          description: item.description,
+          quantity: item.quantity,
+          category: item.category,
+          amount: item.amount,
+          status: item.status,
+          createdAt: item.createdAt,
+          updatedAt: item.updatedAt,
+        })
+      }>
       <Text style={styles.itemTitle}>{item.name}</Text>
       <Text style={styles.itemStatus}>
         {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
@@ -66,7 +81,7 @@ const RecentItemsComponent = () => {
           <Icon name="cart-check" size={33} color="#000" />
         )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (

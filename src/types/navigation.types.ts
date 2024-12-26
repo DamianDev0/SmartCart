@@ -5,6 +5,17 @@ export type NavigationRoutes = {
   SignUp: undefined;
   Onboarding: undefined;
   FormItem: undefined;
+  ItemDetails: {
+    id: string;
+    name: string;
+    description: string | null;
+    quantity: number;
+    category: string;
+    amount: string;
+    status: string;
+    createdAt: string;
+    updatedAt: string;
+  };
 };
 
 export type TabRoutes = {
