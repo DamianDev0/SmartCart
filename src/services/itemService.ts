@@ -6,11 +6,17 @@ import {ApiError, handleApiError} from '../utils/errorHandler';
 const itemService = {
   createItem: async (
     data: ItemRequest,
+    token: string,
   ): Promise<ApiResponse<ItemResponse> | ApiError> => {
     try {
       const response = await apiClient.post<ApiResponse<ItemResponse>>(
         '/items',
         data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
       return response.data;
     } catch (error) {

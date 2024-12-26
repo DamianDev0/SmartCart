@@ -10,3 +10,7 @@ export interface ShoppingListResponse {
   createdAt: string;
   updatedAt: string;
 }
+export interface ShoppingListResponseNamesIds {
+  id: string;
+  name: string;
+}

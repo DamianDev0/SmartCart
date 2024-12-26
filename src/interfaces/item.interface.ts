@@ -1,6 +1,8 @@
 export interface ItemRequest {
+  shoppingListId: string;
   name: string;
   quantity: number;
+  description: string;
   amount: number;
   status: string;
 }
