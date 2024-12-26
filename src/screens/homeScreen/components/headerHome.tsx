@@ -1,11 +1,30 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {fontSubtitleBold, height, width} from '../../../utils/styles';
 import useHeader from '../hooks/useHeader';
+import CreateShoppingList from './modalShoppinList';
 
-const HeaderHome = () => {
+interface HeaderHomeProps {
+  fetchShoppingLists: () => void;
+  loading: boolean;
+}
+
+const HeaderHome: React.FC<HeaderHomeProps> = ({
+  fetchShoppingLists,
+  loading,
+}) => {
   const {handleLogOut} = useHeader();
+  const [isModalVisible, setIsModalVisible] = React.useState(false);
+
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.containerAvatarAndText}>
@@ -15,9 +34,20 @@ const HeaderHome = () => {
         />
         <Text style={styles.welcomeText}>Welcome!</Text>
       </View>
-      <TouchableOpacity onPress={handleLogOut}>
-        <Icon name="log-out-outline" size={30} color="#000" />
-      </TouchableOpacity>
+      <View style={styles.iconContainer}>
+        <TouchableOpacity onPress={openModal} style={styles.iconButton}>
+          <MaterialIcons name="add-shopping-cart" size={30} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleLogOut} style={styles.iconButton}>
+          <MaterialIcons name="logout" size={30} color="#000" />
+        </TouchableOpacity>
+      </View>
+      <CreateShoppingList
+        isVisible={isModalVisible}
+        onClose={closeModal}
+        fetchShoppingLists={fetchShoppingLists}
+        loading={loading}
+      />
     </View>
   );
 };
@@ -33,6 +63,13 @@ const styles = StyleSheet.create({
   containerAvatarAndText: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconButton: {
+    marginLeft: 10,
   },
   image: {
     width: width * 0.12,

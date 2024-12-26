@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   Dimensions,
+  Image,
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,6 +15,7 @@ import {
   fontSubtitleBold,
   fontTextLigth,
   fontTitle,
+  height,
   secondaryColor,
 } from '../../../utils/styles';
 
@@ -30,6 +32,18 @@ const RecentItemsComponent = () => {
     return (
       <View style={styles.errorContainer}>
         <Text style={styles.errorText}>{error}</Text>
+      </View>
+    );
+  }
+
+  if (!recentItems || recentItems.length === 0) {
+    return (
+      <View style={styles.noItemsContainer}>
+        <Image
+          source={require('../../../assets/img/hobby.png')}
+          style={styles.noItemsImage}
+        />
+        <Text style={styles.noItemsText}>No recent purchases</Text>
       </View>
     );
   }
@@ -77,7 +91,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingBottom: 60,
-
   },
   headerTitle: {
     fontSize: 16,
@@ -152,6 +165,21 @@ const styles = StyleSheet.create({
   },
   carousel: {
     marginBottom: 20,
+  },
+  noItemsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noItemsImage: {
+    width: width * 0.7,
+    height: height * 0.3,
+    marginBottom: 20,
+  },
+  noItemsText: {
+    fontSize: 14,
+    color: '#666',
+    fontFamily: fontSubtitleBold,
   },
 });
 

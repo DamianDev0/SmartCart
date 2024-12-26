@@ -5,6 +5,7 @@ import {
   AuthContextProps,
   AuthProviderProps,
 } from '../interfaces/auth.interface';
+import useNavigation from '../hooks/useNavigation';
 
 const AuthContext = createContext<AuthContextProps>({
   isAuthenticated: false,
@@ -20,6 +21,7 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
   const [token, setToken] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const loadAuthState = async () => {
@@ -60,8 +62,8 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
     setToken(null);
     setUserId(null);
     setIsAuthenticated(false);
+    navigation.navigate('Auth');
   };
-
   return (
     <AuthContext.Provider
       value={{

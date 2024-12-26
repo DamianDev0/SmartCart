@@ -1,27 +1,35 @@
-// ShoppingListComponent.tsx
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
   FlatList,
   ActivityIndicator,
   StyleSheet,
+  Image,
 } from 'react-native';
-import {ShoppingListResponse} from '../../../interfaces/shoppinList.interface';
-import useShoppingLists from '../hooks/useShoppinList';
+import { ShoppingListResponse } from '../../../interfaces/shoppinList.interface';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import {
+  fontSubtitleBold,
   fontTextLigth,
   fontTitle,
+  height,
   secondaryColorLigth,
   width,
 } from '../../../utils/styles';
-import {CustomToast} from '../../../components/customToast';
+import { CustomToast } from '../../../components/customToast';
 
-const ShoppingListComponent: React.FC = () => {
-  const {shoppingLists, loading, error} = useShoppingLists();
+interface ShoppingListComponentProps {
+  loading: boolean;
+  shoppingLists: ShoppingListResponse[];
+  error: string | null;
+}
 
+const ShoppingListComponent: React.FC<ShoppingListComponentProps> = ({
+  loading,
+  shoppingLists,
+  error,
+}) => {
   useEffect(() => {
     if (error) {
       CustomToast({
@@ -33,12 +41,17 @@ const ShoppingListComponent: React.FC = () => {
   }, [error]);
 
   if (loading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#000" />
+      </View>
+    );
   }
 
-  if (!loading && shoppingLists.length === 0) {
+  if (shoppingLists.length === 0) {
     return (
       <View style={styles.noItemsContainer}>
+        <Image source={require('../../../assets/img/shopping2.png')} style={styles.noItemsImage} />
         <Text style={styles.noItemsText}>No shopping lists created yet.</Text>
       </View>
     );
@@ -50,7 +63,7 @@ const ShoppingListComponent: React.FC = () => {
       <FlatList
         data={shoppingLists}
         keyExtractor={(item: ShoppingListResponse) => item.id}
-        renderItem={({item}: {item: ShoppingListResponse}) => (
+        renderItem={({ item }: { item: ShoppingListResponse }) => (
           <View style={styles.itemContainer}>
             <Icon
               name="cart-outline"
@@ -81,17 +94,34 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingBottom: 40,
   },
-  errorContainer: {
+  loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  errorText: {
-    color: 'red',
-    fontSize: 18,
+  noItemsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
   },
-  listContainer: {
-    paddingBottom: 20,
+  noItemsImage: {
+    width: width * 0.7,
+    height: height * 0.19,
+    marginBottom: 20,
+  },
+  noItemsText: {
+    fontSize: 13,
+    color: '#666',
+    textAlign: 'center',
+    fontFamily: fontSubtitleBold,
+  },
+  title: {
+    fontSize: 14,
+    fontFamily: fontTitle,
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#000',
   },
   itemContainer: {
     flexDirection: 'row',
@@ -102,7 +132,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 5,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
   },
@@ -124,23 +154,8 @@ const styles = StyleSheet.create({
     maxWidth: width * 0.71,
     fontFamily: fontTextLigth,
   },
-  noItemsContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  noItemsText: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-  },
-  title: {
-    fontSize: 14,
-    fontFamily: fontTitle,
-    marginBottom: 20,
-    textAlign: 'center',
-    color: '#000',
+  listContainer: {
+    paddingBottom: 20,
   },
 });
 
