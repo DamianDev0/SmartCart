@@ -22,7 +22,6 @@ const useRecentItems = () => {
 
       setLoading(true);
       const response: unknown = await shoppingListService.getRecentItems(token);
-      console.log('Response from service:', response);
 
       if ((response as ApiError).statusCode) {
         setError((response as ApiError).message);

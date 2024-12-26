@@ -4,6 +4,7 @@ import {ItemResponse} from '../interfaces/item.interface';
 import {
   ShoppingListRequest,
   ShoppingListResponse,
+  ShoppingListResponseNamesIds,
 } from '../interfaces/shoppinList.interface';
 import {ApiError, handleApiError} from '../utils/errorHandler';
 
@@ -38,6 +39,20 @@ const shoppingListService = {
         },
       );
 
+      return response.data;
+    } catch (error) {
+      const apiError = handleApiError(error);
+      return apiError;
+    }
+  },
+
+  getShoppingListsNamesAndIds: async (
+    token: string,
+  ): Promise<ApiResponse<ShoppingListResponseNamesIds[]> | ApiError> => {
+    try {
+      const response = await apiClient.get<
+        ApiResponse<ShoppingListResponseNamesIds[]>
+      >('/shopping/namesAndIds', {headers: {Authorization: `Bearer ${token}`}});
       return response.data;
     } catch (error) {
       const apiError = handleApiError(error);
