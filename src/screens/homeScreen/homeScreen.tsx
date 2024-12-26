@@ -1,21 +1,36 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 import ShoppingListComponent from './components/bottomShoppinList';
 import {primaryColor} from '../../utils/styles';
 import HeaderHome from './components/headerHome';
 import RecentItemsComponent from './components/sliderComponent';
+import useShoppingLists from './hooks/useShoppinList';
 
 const HomeScreen: React.FC = () => {
+  const {fetchShoppingLists, loading, shoppingLists, error} =
+    useShoppingLists();
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchShoppingLists();
+    }, [fetchShoppingLists]),
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <HeaderHome />
+        <HeaderHome fetchShoppingLists={fetchShoppingLists} loading={loading} />
       </View>
       <View style={styles.recentItems}>
         <RecentItemsComponent />
       </View>
       <View style={styles.bottom}>
-        <ShoppingListComponent />
+        <ShoppingListComponent
+          loading={loading}
+          shoppingLists={shoppingLists}
+          error={error}
+        />
       </View>
     </View>
   );

@@ -1,7 +1,6 @@
-// shoppingListService.ts
 import apiClient from '../api/apiClient';
 import {ApiResponse} from '../interfaces/apiResponse';
-import { ItemResponse } from '../interfaces/item.interface';
+import {ItemResponse} from '../interfaces/item.interface';
 import {
   ShoppingListRequest,
   ShoppingListResponse,
@@ -11,11 +10,13 @@ import {ApiError, handleApiError} from '../utils/errorHandler';
 const shoppingListService = {
   createShoppingList: async (
     data: ShoppingListRequest,
+    token: string,
   ): Promise<ApiResponse<ShoppingListResponse> | ApiError> => {
     try {
       const response = await apiClient.post<ApiResponse<ShoppingListResponse>>(
         '/shopping',
         data,
+        {headers: {Authorization: `Bearer ${token}`}},
       );
       return response.data;
     } catch (error) {
@@ -61,7 +62,6 @@ const shoppingListService = {
       return apiError;
     }
   },
-
 };
 
 export default shoppingListService;

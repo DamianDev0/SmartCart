@@ -1,22 +1,15 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { enableScreens } from 'react-native-screens';
+import {enableScreens} from 'react-native-screens';
 import PublicRoutes from './public/publicNavigation';
 import PrivateRoutes from './private/privateNavigation';
-import { useAuth } from '../context/authContext';
+import {useAuth} from '../context/authContext';
 
 enableScreens();
 
 const MainRoutes = () => {
-  const { isAuthenticated } = useAuth();
+  const {isAuthenticated} = useAuth();
 
-
-
-  return (
-    <NavigationContainer>
-      {isAuthenticated ? <PrivateRoutes /> : <PublicRoutes />}
-    </NavigationContainer>
-  );
+  return <>{isAuthenticated ? <PrivateRoutes /> : <PublicRoutes />}</>;
 };
 
 export default MainRoutes;
