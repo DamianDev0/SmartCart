@@ -24,6 +24,48 @@ const itemService = {
       return apiError;
     }
   },
+
+  updateItem: async (
+    id: string,
+    data: Partial<ItemRequest>,
+    token: string,
+  ): Promise<ApiResponse<ItemResponse> | ApiError> => {
+    try {
+      const response = await apiClient.patch<ApiResponse<ItemResponse>>(
+        `/items/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      const apiError = handleApiError(error);
+      return apiError;
+    }
+  },
+
+  deleteItem: async (
+    id: string,
+    token: string,
+  ): Promise<ApiResponse<null> | ApiError> => {
+    try {
+      const response = await apiClient.delete<ApiResponse<null>>(
+        `/items/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      const apiError = handleApiError(error);
+      return apiError;
+    }
+  },
 };
 
 export default itemService;
