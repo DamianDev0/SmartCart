@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import EditItem from './components/editModal';
+import DeleteItem from './components/deleItemModal';
 
 const ItemDetailsScreen = () => {
   const route = useRoute();
@@ -28,6 +29,7 @@ const ItemDetailsScreen = () => {
       <Text style={styles.detail}>Created At: {item.createdAt}</Text>
       <Text style={styles.detail}>Updated At: {item.updatedAt}</Text>
       <EditItem item={item} />
+      <DeleteItem itemId={item.id} />
     </View>
   );
 };

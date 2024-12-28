@@ -19,7 +19,7 @@ import {
   secondaryColor,
   width,
 } from '../../../utils/styles';
-import useNavigation from '../../../hooks/useNavigation'; // Importar el hook personalizado
+import useNavigation from '../../../hooks/useNavigation';
 
 const RecentItemsComponent = () => {
   const {recentItems, loading, error} = useRecentItems();
@@ -32,6 +32,10 @@ const RecentItemsComponent = () => {
   if (error) {
     return (
       <View style={styles.errorContainer}>
+        <Image
+          source={require('../../../assets/img/error.png')}
+          style={styles.noItemsImage}
+        />
         <Text style={styles.errorText}>{error}</Text>
       </View>
     );
@@ -119,7 +123,8 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: 'red',
-    fontSize: 18,
+    fontFamily: fontSubtitleBold,
+    fontSize: 13,
   },
   carouselItem: {
     flex: 0.9,
