@@ -3,6 +3,8 @@ import {useAuth} from '../../../context/authContext';
 import itemService from '../../../services/itemService';
 import {CustomToast} from '../../../components/customToast';
 import useNavigation from '../../../hooks/useNavigation';
+import {ApiResponse} from '../../../interfaces/apiResponse';
+import {ApiError} from '../../../utils/errorHandler';
 
 const useDeleteItem = () => {
   const {token} = useAuth();
@@ -21,10 +23,10 @@ const useDeleteItem = () => {
     console.log('Deleting item with id:', id);
 
     try {
-      const response = await itemService.deleteItem(id, token);
-      console.log('Response from itemService:', response);
+      const response: ApiResponse<null> | ApiError =
+        await itemService.deleteItem(id, token);
 
-      if (response.message === 'Data retrieved successfully') {
+      if ('code' in response && response.code === 200) {
         CustomToast({
           type: 'success',
           text1: 'Success',
@@ -32,8 +34,8 @@ const useDeleteItem = () => {
           position: 'top',
         });
         navigation.goBack();
-      } else if ('error' in response) {
-        throw new Error(response.error as string);
+      } else if ('code' in response && response.code !== 200) {
+        throw new Error(response.message);
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -44,6 +46,7 @@ const useDeleteItem = () => {
           text2: err.message,
           position: 'top',
         });
+        console.log('Error:', err.message);
       }
     } finally {
       setLoading(false);
