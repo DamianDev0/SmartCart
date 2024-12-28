@@ -11,7 +11,7 @@ export type NavigationRoutes = {
     description: string | null;
     quantity: number;
     category: string;
-    amount: string;
+    amount: number;
     status: string;
     createdAt: string;
     updatedAt: string;
