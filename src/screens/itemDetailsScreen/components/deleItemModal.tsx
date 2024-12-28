@@ -33,7 +33,7 @@ const DeleteItem: React.FC<DeleteItemProps> = ({itemId}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={toggleModal}>
-        <Icon name="trash-can-outline" size={30} color="red" />
+        <Icon name="trash-can-outline" size={30} color="#000" />
       </TouchableOpacity>
       <BottomSheet
         isVisible={modalVisible}

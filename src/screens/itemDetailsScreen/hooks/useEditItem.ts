@@ -3,6 +3,7 @@ import {useAuth} from '../../../context/authContext';
 import {CustomToast} from '../../../components/customToast';
 import itemService from '../../../services/itemService';
 import {ItemRequest, ItemResponse} from '../../../interfaces/item.interface';
+import useNavigation from '../../../hooks/useNavigation';
 
 const useEditItem = (initialData: ItemResponse) => {
   const {token} = useAuth();
@@ -17,6 +18,7 @@ const useEditItem = (initialData: ItemResponse) => {
     amount: Number(initialData.amount),
     status: initialData.status,
   });
+  const navigation = useNavigation();
 
   const editItem = async (id: string, data: Partial<ItemRequest>) => {
     if (!token) {
@@ -39,6 +41,7 @@ const useEditItem = (initialData: ItemResponse) => {
           position: 'top',
         });
         toggleModal();
+        navigation.navigate('Home');
       }
     } catch (err: unknown) {
       if (err instanceof Error) {

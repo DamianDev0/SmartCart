@@ -51,7 +51,7 @@ const ShoppingListComponent: React.FC<ShoppingListComponentProps> = ({
   if (shoppingLists.length === 0) {
     return (
       <View style={styles.noItemsContainer}>
-        <Image source={require('../../../assets/img/shopping2.png')} style={styles.noItemsImage} />
+        <Image source={require('../../../assets/img/time.png')} style={styles.noItemsImage} />
         <Text style={styles.noItemsText}>No shopping lists created yet.</Text>
       </View>
     );
@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   noItemsImage: {
-    width: width * 0.7,
-    height: height * 0.19,
+    width: width * 0.5,
+    height: height * 0.2,
     marginBottom: 20,
   },
   noItemsText: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, ActivityIndicator, StyleSheet, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Feather';
 import useEditItem from '../hooks/useEditItem';
 import BottomSheet from '../../../components/modal.component';
 import InputGeneric from '../../../components/genericInput';
@@ -38,7 +38,7 @@ const EditItem: React.FC<EditItemProps> = ({item}) => {
 
   return (
     <View style={styles.container}>
-      <Icon name="edit" size={30} color="#000" onPress={toggleModal} />
+      <Icon name="edit" size={28} color="#000" onPress={toggleModal} />
       <BottomSheet
         isVisible={modalVisible}
         onClose={toggleModal}
