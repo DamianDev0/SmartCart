@@ -1,9 +1,9 @@
 import {useRoute} from '@react-navigation/native';
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ShoppingListItems from './components/itemsShoppinList';
 import {fontTitle, height, primaryColor, width} from '../../utils/styles';
+import SuggestItems from './components/suggestItem';
 
 const ShoppingListScreen = () => {
   const route = useRoute();
@@ -21,7 +21,7 @@ const ShoppingListScreen = () => {
       />
       <Text style={styles.text}>{shoppinList.name}</Text>
       <View style={styles.iconContainer}>
-        <Icon name="robot-love-outline" size={30} color="#000" />
+        <SuggestItems shoppingListId={shoppinList.id} />
       </View>
       <ShoppingListItems shoppingListId={shoppinList.id} />
     </View>

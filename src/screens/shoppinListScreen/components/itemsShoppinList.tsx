@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   },
   noItemsText: {
     fontSize: 12,
-    color: '#666',
+    color: '#000',
     textAlign: 'center',
     fontFamily: fontSubtitleBold,
   },
