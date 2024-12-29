@@ -16,6 +16,11 @@ export type NavigationRoutes = {
     createdAt: string;
     updatedAt: string;
   };
+  ShoppinList: {
+    id: string;
+    name: string;
+    context: string;
+  };
 };
 
 export type TabRoutes = {

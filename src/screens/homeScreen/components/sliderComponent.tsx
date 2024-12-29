@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, {useCallback} from 'react';
 import {
   View,
   Text,
@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useFocusEffect } from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import useRecentItems from '../hooks/useSlider';
-import { ItemResponse } from '../../../interfaces/item.interface';
+import {ItemResponse} from '../../../interfaces/item.interface';
 import {
   fontSubtitleBold,
   fontTextLigth,
@@ -23,13 +23,13 @@ import {
 import useNavigation from '../../../hooks/useNavigation';
 
 const RecentItemsComponent = () => {
-  const { recentItems, loading, error, fetchRecentItems } = useRecentItems();
+  const {recentItems, loading, error, fetchRecentItems} = useRecentItems();
   const navigation = useNavigation();
 
   useFocusEffect(
     useCallback(() => {
       fetchRecentItems();
-    }, [fetchRecentItems])
+    }, [fetchRecentItems]),
   );
 
   if (loading) {
@@ -60,7 +60,7 @@ const RecentItemsComponent = () => {
     );
   }
 
-  const renderCarouselItem = ({ item }: { item: ItemResponse }) => (
+  const renderCarouselItem = ({item}: {item: ItemResponse}) => (
     <TouchableOpacity
       style={styles.carouselItem}
       onPress={() =>
@@ -75,8 +75,7 @@ const RecentItemsComponent = () => {
           createdAt: item.createdAt,
           updatedAt: item.updatedAt,
         })
-      }
-    >
+      }>
       <Text style={styles.itemTitle}>{item.name}</Text>
       <Text style={styles.itemStatus}>
         {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
@@ -123,6 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fontTitle,
     textAlign: 'center',
+    color: '#000',
   },
   errorContainer: {
     flex: 1,

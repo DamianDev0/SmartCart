@@ -59,6 +59,7 @@ const shoppingListService = {
       return apiError;
     }
   },
+
   getRecentItems: async (
     token: string,
   ): Promise<ApiResponse<ItemResponse[]> | ApiError> => {
@@ -70,6 +71,39 @@ const shoppingListService = {
             Authorization: `Bearer ${token}`,
           },
         },
+      );
+      return response.data;
+    } catch (error) {
+      const apiError = handleApiError(error);
+      return apiError;
+    }
+  },
+
+  getItemsByShoppingListId: async (
+    shoppingListId: string,
+    token: string,
+  ): Promise<ApiResponse<ItemResponse[]> | ApiError> => {
+    try {
+      const response = await apiClient.get<ApiResponse<ItemResponse[]>>(
+        `/shopping/${shoppingListId}/items`,
+        {headers: {Authorization: `Bearer ${token}`}},
+      );
+      return response.data;
+    } catch (error) {
+      const apiError = handleApiError(error);
+      return apiError;
+    }
+  },
+
+  suggestItems: async (
+    shoppingListId: string,
+    token: string,
+  ): Promise<ApiResponse<string> | ApiError> => {
+    try {
+      const response = await apiClient.post<ApiResponse<string>>(
+        `/shopping/${shoppingListId}/suggest-items`,
+        {},
+        {headers: {Authorization: `Bearer ${token}`}},
       );
       return response.data;
     } catch (error) {
