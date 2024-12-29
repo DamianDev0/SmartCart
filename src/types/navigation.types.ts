@@ -21,6 +21,7 @@ export type NavigationRoutes = {
     name: string;
     context: string;
   };
+  Chart: undefined;
 };
 
 export type TabRoutes = {

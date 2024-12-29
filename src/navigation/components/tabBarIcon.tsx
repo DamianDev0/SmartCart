@@ -15,6 +15,9 @@ const TabBarIcon: React.FC<TabBarIconProps> = ({routeName}) => {
     case 'FormItem':
       iconName = 'shopping-bag';
       break;
+    case 'Chart':
+      iconName = 'pie-chart';
+      break;
     default:
       iconName = 'alert-circle';
   }

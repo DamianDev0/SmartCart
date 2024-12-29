@@ -6,12 +6,14 @@ import HomeScreen from '../../screens/homeScreen/homeScreen';
 import FormItemScreen from '../../screens/FormItemScreen/formItemScreen';
 import {fontSubtitleBold, secondaryColor, width} from '../../utils/styles';
 import TabBarIcon from './tabBarIcon';
+import ChartScreen from '../../screens/chartScreen/chartScreen';
 
 const Tab = createBottomTabNavigator<NavigationRoutes>();
 export const PrivateTabs = () => (
   <View style={{flex: 1}}>
     <Tab.Navigator
       screenOptions={({route}) => ({
+        // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: () => <TabBarIcon routeName={route.name} />,
         tabBarActiveTintColor: secondaryColor,
         tabBarInactiveTintColor: '#000',
@@ -29,6 +31,11 @@ export const PrivateTabs = () => (
         name="FormItem"
         component={FormItemScreen}
         options={{tabBarLabel: 'Create'}}
+      />
+      <Tab.Screen
+        name="Chart"
+        component={ChartScreen}
+        options={{tabBarLabel: 'Stats'}}
       />
     </Tab.Navigator>
   </View>

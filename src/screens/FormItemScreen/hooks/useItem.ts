@@ -88,6 +88,7 @@ const useCreateItem = () => {
         type: 'success',
         text1: 'Item created',
         text2: 'Your item has been successfully created.',
+        position: 'top',
       });
       setItemData({
         shoppingListId: '',

@@ -111,6 +111,38 @@ const shoppingListService = {
       return apiError;
     }
   },
+
+  getShoppingStatistics: async (
+    token: string,
+  ): Promise<ApiResponse<{pending: number; purchased: number}> | ApiError> => {
+    try {
+      const response = await apiClient.get<
+        ApiResponse<{pending: number; purchased: number}>
+      >('/shopping/statistics', {headers: {Authorization: `Bearer ${token}`}});
+      return response.data;
+    } catch (error) {
+      const apiError = handleApiError(error);
+      return apiError;
+    }
+  },
+
+  getItemsByDay: async (
+    token: string,
+  ): Promise<
+    ApiResponse<{date: string; status: string; count: number}[]> | ApiError
+  > => {
+    try {
+      const response = await apiClient.get<
+        ApiResponse<{date: string; status: string; count: number}[]>
+      >('/shopping/items/by-day', {
+        headers: {Authorization: `Bearer ${token}`},
+      });
+      return response.data;
+    } catch (error) {
+      const apiError = handleApiError(error);
+      return apiError;
+    }
+  },
 };
 
 export default shoppingListService;
