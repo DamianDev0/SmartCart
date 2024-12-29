@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,8 +6,10 @@ import {
   ActivityIndicator,
   StyleSheet,
   Image,
+  TouchableOpacity,
 } from 'react-native';
-import { ShoppingListResponse } from '../../../interfaces/shoppinList.interface';
+
+import {ShoppingListResponse} from '../../../interfaces/shoppinList.interface';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   fontSubtitleBold,
@@ -17,7 +19,8 @@ import {
   secondaryColorLigth,
   width,
 } from '../../../utils/styles';
-import { CustomToast } from '../../../components/customToast';
+import {CustomToast} from '../../../components/customToast';
+import useNavigation from '../../../hooks/useNavigation';
 
 interface ShoppingListComponentProps {
   loading: boolean;
@@ -30,6 +33,8 @@ const ShoppingListComponent: React.FC<ShoppingListComponentProps> = ({
   shoppingLists,
   error,
 }) => {
+  const navigation = useNavigation();
+
   useEffect(() => {
     if (error) {
       CustomToast({
@@ -51,7 +56,10 @@ const ShoppingListComponent: React.FC<ShoppingListComponentProps> = ({
   if (shoppingLists.length === 0) {
     return (
       <View style={styles.noItemsContainer}>
-        <Image source={require('../../../assets/img/time.png')} style={styles.noItemsImage} />
+        <Image
+          source={require('../../../assets/img/time.png')}
+          style={styles.noItemsImage}
+        />
         <Text style={styles.noItemsText}>No shopping lists created yet.</Text>
       </View>
     );
@@ -63,8 +71,16 @@ const ShoppingListComponent: React.FC<ShoppingListComponentProps> = ({
       <FlatList
         data={shoppingLists}
         keyExtractor={(item: ShoppingListResponse) => item.id}
-        renderItem={({ item }: { item: ShoppingListResponse }) => (
-          <View style={styles.itemContainer}>
+        renderItem={({item}: {item: ShoppingListResponse}) => (
+          <TouchableOpacity
+            style={styles.itemContainer}
+            onPress={() =>
+              navigation.navigate('ShoppinList', {
+                id: item.id,
+                name: item.name,
+                context: item.context,
+              })
+            }>
             <Icon
               name="cart-outline"
               size={30}
@@ -75,7 +91,7 @@ const ShoppingListComponent: React.FC<ShoppingListComponentProps> = ({
               <Text style={styles.itemTitle}>{item.name}</Text>
               <Text style={styles.itemContext}>{item.context}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         )}
         contentContainerStyle={styles.listContainer}
         showsVerticalScrollIndicator={false}
@@ -132,7 +148,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 5,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowRadius: 2,
   },

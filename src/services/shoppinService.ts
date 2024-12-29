@@ -77,6 +77,21 @@ const shoppingListService = {
       return apiError;
     }
   },
+  getItemsByShoppingListId: async (
+    shoppingListId: string,
+    token: string,
+  ): Promise<ApiResponse<ItemResponse[]> | ApiError> => {
+    try {
+      const response = await apiClient.get<ApiResponse<ItemResponse[]>>(
+        `/shopping/${shoppingListId}/items`,
+        {headers: {Authorization: `Bearer ${token}`}},
+      );
+      return response.data;
+    } catch (error) {
+      const apiError = handleApiError(error);
+      return apiError;
+    }
+  },
 };
 
 export default shoppingListService;
