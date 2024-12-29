@@ -19,7 +19,7 @@ const TabBarIcon: React.FC<TabBarIconProps> = ({routeName}) => {
       iconName = 'alert-circle';
   }
 
-  return <Icon name={iconName} size={25} color={'#FFF'} />;
+  return <Icon name={iconName} size={25} color={'#000'} />;
 };
 
 export default TabBarIcon;

@@ -14,7 +14,7 @@ export const PrivateTabs = () => (
       screenOptions={({route}) => ({
         tabBarIcon: () => <TabBarIcon routeName={route.name} />,
         tabBarActiveTintColor: secondaryColor,
-        tabBarInactiveTintColor: '#ccc',
+        tabBarInactiveTintColor: '#000',
         headerShown: false,
         tabBarStyle: [styles.tabBarStyle, styles.staticTabBar],
         tabBarLabelStyle: styles.tabBarLabelStyle,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 0.3,
     gap: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     zIndex: 2,
     marginLeft: width * 0.2,
     overflow: 'hidden',

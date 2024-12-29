@@ -89,7 +89,7 @@ const RecentItemsComponent = () => {
         {item.status.toLowerCase() === 'pending' ? (
           <Icon name="cart-outline" size={33} color="#000" />
         ) : (
-          <Icon name="cart-check" size={33} color="#000" />
+          <Icon name="check-circle" size={30} color={secondaryColor} />
         )}
       </View>
     </TouchableOpacity>
@@ -140,10 +140,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: width * 1,
-    elevation: 2,
+    elevation: 4,
     shadowColor: '#000',
     backgroundColor: '#fff',
     padding: 40,
+    borderColor: '#000',
+    borderWidth: 0.4,
   },
   itemTitle: {
     fontSize: 20,
@@ -182,7 +184,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   itemAmount: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#000',
     fontFamily: fontTitle,
   },

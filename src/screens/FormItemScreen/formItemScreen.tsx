@@ -133,11 +133,11 @@ const styles = StyleSheet.create({
   },
   image: {
     width: width * 1,
-    height: height * 0.4,
+    height: height * 0.3,
     resizeMode: 'contain',
   },
   inputContainer: {
-    gap: 20,
+    gap: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },

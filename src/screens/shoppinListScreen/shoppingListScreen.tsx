@@ -52,6 +52,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 15,
+    flexDirection: 'row',
+    width : width,
   },
 });
 

@@ -1,14 +1,16 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image, ScrollView} from 'react-native';
+import {Text, View, StyleSheet, Image} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {format, parseISO} from 'date-fns';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import {
   fontSubtitle,
-  fontSubtitleBold,
+  fontTextLigth,
   fontTitle,
   height,
   primaryColor,
+  secondaryColor,
+  secondaryColorLigth,
   width,
 } from '../../utils/styles';
 import EditItem from './components/editModal';
@@ -31,10 +33,7 @@ const ItemDetailsScreen = () => {
   const dayOfWeek = format(parseISO(item.createdAt), 'EEEE');
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={{flexGrow: 1}}
-      showsVerticalScrollIndicator={false}>
+    <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Image
           source={require('../../assets/img/shopping2.png')}
@@ -55,21 +54,21 @@ const ItemDetailsScreen = () => {
           <Text style={styles.description}>{item.description}</Text>
           <View style={styles.hr} />
           <View style={styles.detailsRow}>
-            <Icon name="calendar" size={22} color="#000" />
+            <AntDesign name="calendar" size={22} color="#000" />
             <Text style={styles.detail}>Created At: {dayOfWeek}</Text>
           </View>
           <View style={styles.detailsRow}>
-            <Icon name="package-variant" size={22} color="#000" />
+            <AntDesign name="inbox" size={22} color="#000" />
             <Text style={styles.detail}>Quantity: {item.quantity}</Text>
           </View>
           <View style={styles.detailsRow}>
-            <Icon name="tag" size={22} color="#000" />
+            <AntDesign name="tagso" size={22} color="#000" />
             <Text style={styles.detail}>Category: {item.category}</Text>
           </View>
           <View style={styles.detailsRow}>
-            <Icon
-              name="checkbox-marked-circle-outline"
-              size={22}
+            <AntDesign
+              name="checkcircleo"
+              size={20}
               color="#000"
             />
             <Text style={styles.detail}>Status: {item.status}</Text>
@@ -79,14 +78,14 @@ const ItemDetailsScreen = () => {
           </View>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: primaryColor,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -125,24 +124,25 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     padding: 20,
-    backgroundColor: primaryColor,
+    backgroundColor: '#fff',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     height: height * 0.5,
     elevation: 10,
     shadowColor: '#000',
+    borderWidth: 0.5,
+    borderColor: '#000',
   },
   detailsRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: 10,
   },
   title: {
     fontSize: 18,
     fontFamily: fontTitle,
     marginBottom: 10,
-
-    color: '#333',
+    color: secondaryColor,
   },
   description: {
     fontSize: 14,
@@ -153,22 +153,22 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   hr: {
-    borderBottomColor: '#000',
+    borderBottomColor: secondaryColorLigth,
     borderBottomWidth: 2,
     marginBottom: 10,
   },
   detail: {
     marginBottom: 5,
     color: '#000',
-    fontFamily: fontSubtitleBold,
+    fontFamily: fontTextLigth,
     fontSize: 12,
     marginLeft: 5,
   },
   detailAmount: {
     marginBottom: 5,
-    color: '#000',
+    color: 'rgba(0,0,0,0.8)',
     fontFamily: fontTitle,
-    fontSize: 16,
+    fontSize: 14,
     marginLeft: 5,
     letterSpacing: 1,
   },

@@ -24,7 +24,7 @@ import useNavigation from '../../../hooks/useNavigation';
 
 interface ShoppingListComponentProps {
   loading: boolean;
-  shoppingLists: ShoppingListResponse[];
+  shoppingLists: ShoppingListResponse[] | undefined;
   error: string | null;
 }
 
@@ -53,7 +53,7 @@ const ShoppingListComponent: React.FC<ShoppingListComponentProps> = ({
     );
   }
 
-  if (shoppingLists.length === 0) {
+  if (!shoppingLists || shoppingLists.length === 0) {
     return (
       <View style={styles.noItemsContainer}>
         <Image

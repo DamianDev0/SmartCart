@@ -57,8 +57,12 @@ const SuggestItems: React.FC<SuggestItemsModalProps> = ({shoppingListId}) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handlePress} disabled={loading}>
-        <Icon name="robot" size={30} color={loading ? '#ccc' : '#000'} />
+      <TouchableOpacity
+        onPress={handlePress}
+        disabled={loading}
+        style={styles.button}>
+        <Icon name="robot-love-outline" size={30} color={loading ? '#ccc' : '#000'} />
+        <Text style={styles.buttonText}>IA Suggest</Text>
       </TouchableOpacity>
 
       <BottomSheet
@@ -86,6 +90,16 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  buttonText: {
+    marginLeft: 10,
+    fontSize: 12,
+    color: '#000',
+    fontFamily: fontSubtitleBold,
   },
   content: {
     alignItems: 'center',

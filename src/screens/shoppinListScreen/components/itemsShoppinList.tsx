@@ -159,6 +159,10 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowRadius: 2,
+    borderColor: '#000',
+    borderWidth: 0.5,
+    width: width * 0.79,
+    height: height * 0.18,
   },
   itemHeader: {
     flexDirection: 'row',

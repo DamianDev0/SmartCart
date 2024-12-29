@@ -37,7 +37,7 @@ const CreateShoppingList: React.FC<CreateShoppingListProps> = ({
       isVisible={isVisible}
       onClose={onClose}
       backgroundColor={primaryColor}
-      height={540}>
+      height={500}>
       <View style={styles.form}>
         <Image
           source={require('../../../assets/img/shopping.png')}
@@ -53,6 +53,7 @@ const CreateShoppingList: React.FC<CreateShoppingListProps> = ({
               onChangeText={(text: string) => handleChange('name', text)}
               icon="cart"
               backgroundColor="rgba(0, 0, 0, 0.4)"
+              height={45}
             />
             <InputGeneric
               placeholder="Context"
@@ -60,6 +61,8 @@ const CreateShoppingList: React.FC<CreateShoppingListProps> = ({
               onChangeText={(text: string) => handleChange('context', text)}
               icon="information-circle"
               backgroundColor="rgba(0, 0, 0, 0.4)"
+              height={45}
+
             />
             <GenericButton
               title="Create"
@@ -67,6 +70,7 @@ const CreateShoppingList: React.FC<CreateShoppingListProps> = ({
               disabled={createLoading}
               color="#FFF"
               backgroundColor="#000"
+              height={45}
             />
           </>
         )}
@@ -82,8 +86,8 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   image: {
-    width: width * 0.7,
-    height: height * 0.3,
+    width: width * 0.65,
+    height: height * 0.27,
   },
 });
 
