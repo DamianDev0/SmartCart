@@ -20,7 +20,6 @@ const useDeleteItem = () => {
 
     setLoading(true);
     setError(null);
-    console.log('Deleting item with id:', id);
 
     try {
       const response: ApiResponse<null> | ApiError =
@@ -33,7 +32,7 @@ const useDeleteItem = () => {
           text2: 'Item deleted successfully.',
           position: 'top',
         });
-        navigation.goBack();
+        navigation.navigate('Home');
       } else if ('code' in response && response.code !== 200) {
         throw new Error(response.message);
       }
@@ -46,11 +45,9 @@ const useDeleteItem = () => {
           text2: err.message,
           position: 'top',
         });
-        console.log('Error:', err.message);
       }
     } finally {
       setLoading(false);
-      console.log('Loading state set to false');
     }
   };
 

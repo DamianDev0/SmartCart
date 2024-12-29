@@ -36,10 +36,10 @@ const HeaderHome: React.FC<HeaderHomeProps> = ({
       </View>
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={openModal} style={styles.iconButton}>
-          <MaterialIcons name="add-shopping-cart" size={30} color="#000" />
+          <MaterialIcons name="add-shopping-cart" size={25} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleLogOut} style={styles.iconButton}>
-          <MaterialIcons name="logout" size={30} color="#000" />
+          <MaterialIcons name="logout" size={25} color="#000" />
         </TouchableOpacity>
       </View>
       <CreateShoppingList
@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   image: {
-    width: width * 0.12,
+    width: width * 0.1,
     height: height * 0.07,
     resizeMode: 'contain',
     marginRight: 1,
   },
   welcomeText: {
-    fontSize: 13,
+    fontSize: 12,
     fontFamily: fontSubtitleBold,
     color: '#000',
   },
