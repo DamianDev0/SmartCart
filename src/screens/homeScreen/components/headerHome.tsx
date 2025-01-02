@@ -32,7 +32,7 @@ const HeaderHome: React.FC<HeaderHomeProps> = ({
           source={require('../../../assets/img/avatar.png')}
           style={styles.image}
         />
-        <Text style={styles.welcomeText}>Welcome!</Text>
+        <Text style={styles.welcomeText}>Welcome to SmartCart!</Text>
       </View>
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={openModal} style={styles.iconButton}>
@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   image: {
-    width: width * 0.1,
-    height: height * 0.07,
+    width: width * 0.11,
+    height: height * 0.08,
     resizeMode: 'contain',
     marginRight: 1,
   },
   welcomeText: {
-    fontSize: 12,
+    fontSize: 10,
     fontFamily: fontSubtitleBold,
     color: '#000',
   },

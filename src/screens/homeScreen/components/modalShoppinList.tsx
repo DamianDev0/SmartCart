@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, StyleSheet, Image, ActivityIndicator} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import BottomSheet from '../../../components/modal.component';
 import InputGeneric from '../../../components/genericInput';
 import useCreateShoppingList from '../hooks/useShoppinModal';
 import {height, primaryColor, width} from '../../../utils/styles';
 import GenericButton from '../../../components/genericButton';
+import Loader from '../../../components/Loader';
 
 interface CreateShoppingListProps {
   isVisible: boolean;
@@ -44,7 +45,7 @@ const CreateShoppingList: React.FC<CreateShoppingListProps> = ({
           style={styles.image}
         />
         {createLoading || loading ? (
-          <ActivityIndicator size="large" color="#000" />
+        <Loader  />
         ) : (
           <>
             <InputGeneric
@@ -56,7 +57,7 @@ const CreateShoppingList: React.FC<CreateShoppingListProps> = ({
               height={45}
             />
             <InputGeneric
-              placeholder="Context"
+              placeholder="Description"
               value={formState.context}
               onChangeText={(text: string) => handleChange('context', text)}
               icon="information-circle"

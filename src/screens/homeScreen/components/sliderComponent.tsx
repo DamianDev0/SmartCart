@@ -2,7 +2,6 @@ import React, {useCallback} from 'react';
 import {
   View,
   Text,
-  ActivityIndicator,
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -21,6 +20,7 @@ import {
   width,
 } from '../../../utils/styles';
 import useNavigation from '../../../hooks/useNavigation';
+import Loader from '../../../components/Loader';
 
 const RecentItemsComponent = () => {
   const {recentItems, loading, error, fetchRecentItems} = useRecentItems();
@@ -33,7 +33,7 @@ const RecentItemsComponent = () => {
   );
 
   if (loading) {
-    return <ActivityIndicator size="large" color="#000" />;
+    return <Loader />;
   }
 
   if (error) {
@@ -69,7 +69,7 @@ const RecentItemsComponent = () => {
           name: item.name,
           description: item.description,
           quantity: item.quantity,
-          category: item.category,
+          category: item.category || '',
           amount: item.amount,
           status: item.status,
           createdAt: item.createdAt,
@@ -87,9 +87,9 @@ const RecentItemsComponent = () => {
       <View style={styles.detailsContainer}>
         <Text style={styles.itemAmount}>${item.amount}</Text>
         {item.status.toLowerCase() === 'pending' ? (
-          <Icon name="cart-outline" size={33} color="#000" />
+          <Icon name="clock-outline" size={33} color="#000" />
         ) : (
-          <Icon name="check-circle" size={30} color={secondaryColor} />
+          <Icon name="check-circle" size={30} color={'#5499c7'} />
         )}
       </View>
     </TouchableOpacity>
@@ -207,8 +207,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   noItemsText: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: 13,
+    color: '#000',
     fontFamily: fontSubtitleBold,
   },
 });

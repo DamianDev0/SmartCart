@@ -3,7 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  ActivityIndicator,
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -21,6 +20,7 @@ import {
 } from '../../../utils/styles';
 import {CustomToast} from '../../../components/customToast';
 import useNavigation from '../../../hooks/useNavigation';
+import Loader from '../../../components/Loader';
 
 interface ShoppingListComponentProps {
   loading: boolean;
@@ -48,7 +48,7 @@ const ShoppingListComponent: React.FC<ShoppingListComponentProps> = ({
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#000" />
+      <Loader  />
       </View>
     );
   }
@@ -122,15 +122,16 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   noItemsImage: {
-    width: width * 0.5,
-    height: height * 0.2,
+    width: width * 0.6,
+    height: height * 0.24,
     marginBottom: 20,
   },
   noItemsText: {
     fontSize: 13,
-    color: '#666',
+    color: '#000',
     textAlign: 'center',
     fontFamily: fontSubtitleBold,
+    marginBottom: 20,
   },
   title: {
     fontSize: 14,

@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {
   View,
-  ActivityIndicator,
   StyleSheet,
   ScrollView,
   Image,
@@ -17,6 +16,7 @@ import SuccessModal from '../../../components/successModal';
 import InputGeneric from '../../../components/genericInput';
 import GenericButton from '../../../components/genericButton';
 import {CustomToast} from '../../../components/customToast';
+import Loader from '../../../components/Loader';
 
 const RegisterForm = () => {
   const {
@@ -84,7 +84,7 @@ const RegisterForm = () => {
             />
           </View>
           {loading ? (
-            <ActivityIndicator size="large" color="#0000" />
+              <Loader  />
           ) : (
             <View style={styles.registerButton}>
               <GenericButton
@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
   },
   headerImage: {
     width: width * 0.9,
-    height: height * 0.42,
-    marginBottom: 10,
+    height: height * 0.4,
+    marginBottom: width * 0.07,
   },
   formContainer: {
     justifyContent: 'space-between',
@@ -133,6 +133,9 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     alignItems: 'center',
     padding: 30,
+    borderColor: '#000',
+    borderWidth: 0.6,
+    elevation: 1,
   },
   registerButton: {
     alignItems: 'center',

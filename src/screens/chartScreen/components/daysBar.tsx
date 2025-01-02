@@ -1,10 +1,16 @@
 import React, {useCallback} from 'react';
-import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {BarChart} from 'react-native-gifted-charts';
 import {format, eachDayOfInterval, subDays} from 'date-fns';
 import useItemsByDay from '../hooks/useDaysBar';
-import {fontSubtitleBold, fontTitle, width} from '../../../utils/styles';
+import {
+  fontSubtitleBold,
+  fontTitle,
+  secondaryColor,
+  width,
+} from '../../../utils/styles';
 import {useFocusEffect} from '@react-navigation/native';
+import Loader from '../../../components/Loader';
 
 const DaysBar = () => {
   const {itemsByDay, loading, error, fetchItemsByDay} = useItemsByDay();
@@ -31,7 +37,7 @@ const DaysBar = () => {
       return {
         label: format(day, 'E')[0],
         value: groupedByDay[dayKey] || 0,
-        frontColor: groupedByDay[dayKey] ? '#006DFF' : '#E0E0E0',
+        frontColor: groupedByDay[dayKey] ? secondaryColor : '#E0E0E0',
       };
     });
   };
@@ -41,7 +47,7 @@ const DaysBar = () => {
   if (loading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#000" />
+        <Loader color="#fff" />
       </View>
     );
   }

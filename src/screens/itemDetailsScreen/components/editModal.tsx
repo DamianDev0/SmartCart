@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text, ActivityIndicator, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import useEditItem from '../hooks/useEditItem';
 import BottomSheet from '../../../components/modal.component';
 import InputGeneric from '../../../components/genericInput';
 import GenericButton from '../../../components/genericButton';
-import {height, primaryColor, width} from '../../../utils/styles';
+import {fontSubtitleBold, height, primaryColor, width} from '../../../utils/styles';
+import Loader from '../../../components/Loader';
 
 interface EditItemProps {
   item: {
@@ -42,10 +43,10 @@ const EditItem: React.FC<EditItemProps> = ({item}) => {
       <BottomSheet
         isVisible={modalVisible}
         onClose={toggleModal}
-        height={680}
+        height={670}
         backgroundColor={primaryColor}>
         <Image
-          source={require('../../../assets/img/edit.png')}
+          source={require('../../../assets/img/paint.png')}
           style={styles.image}
         />
         <View style={styles.inputsContainer}>
@@ -55,7 +56,7 @@ const EditItem: React.FC<EditItemProps> = ({item}) => {
             onChangeText={text => handleChange('name', text)}
             backgroundColor="rgba(0, 0, 0, 0.4)"
             height={45}
-            width={330}
+            width={320}
             icon="pricetag-outline"
           />
           <InputGeneric
@@ -65,7 +66,7 @@ const EditItem: React.FC<EditItemProps> = ({item}) => {
             backgroundColor="rgba(0, 0, 0, 0.4)"
             height={45}
             icon="document-text-outline"
-            width={330}
+            width={320}
           />
           <InputGeneric
             placeholder="Quantity"
@@ -74,7 +75,7 @@ const EditItem: React.FC<EditItemProps> = ({item}) => {
             keyboardType="numeric"
             backgroundColor="rgba(0, 0, 0, 0.4)"
             height={45}
-            width={330}
+            width={320}
             icon="apps-outline"
           />
           <InputGeneric
@@ -83,7 +84,7 @@ const EditItem: React.FC<EditItemProps> = ({item}) => {
             onChangeText={text => handleChange('category', text)}
             backgroundColor="rgba(0, 0, 0, 0.4)"
             height={45}
-            width={330}
+            width={320}
             icon="color-filter-outline"
           />
           <InputGeneric
@@ -93,7 +94,7 @@ const EditItem: React.FC<EditItemProps> = ({item}) => {
             keyboardType="numeric"
             backgroundColor="rgba(0, 0, 0, 0.4)"
             height={45}
-            width={330}
+            width={320}
             icon="cash-outline"
           />
         </View>
@@ -107,7 +108,7 @@ const EditItem: React.FC<EditItemProps> = ({item}) => {
             backgroundColor="#000"
           />
         </View>
-        {loading && <ActivityIndicator size="large" color="#000" />}
+        {loading &&   <Loader  />}
         {error && <Text style={styles.error}>{error}</Text>}
       </BottomSheet>
     </View>
@@ -120,27 +121,21 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'center',
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
   error: {
     color: 'red',
-    marginTop: 10,
-  },
-  success: {
-    color: 'green',
-    marginTop: 10,
+    fontFamily: fontSubtitleBold,
+    fontSize: 13,
   },
   image: {
-    width: width * 0.7,
+    width: width * 0.8,
     height: height * 0.3,
     resizeMode: 'cover',
     marginBottom: 20,
   },
   inputsContainer: {
-    gap: 12,
+    gap: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonContainer: {
     marginTop: 5,

@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {useAuth} from '../../../context/authContext';
 import itemService from '../../../services/itemService';
 import shoppingListService from '../../../services/shoppinService';
@@ -17,9 +17,7 @@ const useCreateItem = () => {
     amount: '',
     status: '',
   });
-  const [shoppingLists, setShoppingLists] = useState<
-    ShoppingListResponseNamesIds[]
-  >([]);
+  const [shoppingLists, setShoppingLists] = useState<ShoppingListResponseNamesIds[]>([]);
   const [statusOptions] = useState([
     {label: 'Pending', value: 'pending'},
     {label: 'Purchased', value: 'purchased'},
@@ -27,23 +25,22 @@ const useCreateItem = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchShoppingLists = async () => {
-      if (token) {
-        setLoading(true);
-        const response = await shoppingListService.getShoppingListsNamesAndIds(
-          token,
-        );
-        if ('data' in response) {
-          setShoppingLists(response.data);
-        } else {
-          setError(response.message);
-        }
-        setLoading(false);
+  const fetchShoppingLists = useCallback(async () => {
+    if (token) {
+      setLoading(true);
+      const response = await shoppingListService.getShoppingListsNamesAndIds(token);
+      if ('data' in response) {
+        setShoppingLists(response.data);
+      } else {
+        setError(response.message);
       }
-    };
-    fetchShoppingLists();
+      setLoading(false);
+    }
   }, [token]);
+
+  useEffect(() => {
+    fetchShoppingLists();
+  }, [fetchShoppingLists]);
 
   const handleChange = (field: string, value: any) => {
     setItemData(prevState => ({...prevState, [field]: value}));
@@ -98,6 +95,7 @@ const useCreateItem = () => {
         amount: '',
         status: '',
       });
+      fetchShoppingLists();
       navigation.navigate('Home');
     } else {
       CustomToast({
@@ -116,6 +114,7 @@ const useCreateItem = () => {
     handleCreateItem,
     loading,
     error,
+    fetchShoppingLists,
   };
 };
 

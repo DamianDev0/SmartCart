@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View,
   Text,
-  ActivityIndicator,
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -11,7 +10,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import useDeleteItem from '../hooks/useDeleteItem';
 import BottomSheet from '../../../components/modal.component';
 import GenericButton from '../../../components/genericButton';
-import {fontSubtitleBold, height, primaryColor, width} from '../../../utils/styles';
+import {
+  fontSubtitleBold,
+  height,
+  primaryColor,
+  secondaryColor,
+  width,
+} from '../../../utils/styles';
+import Loader from '../../../components/Loader';
 
 interface DeleteItemProps {
   itemId: string;
@@ -49,22 +55,22 @@ const DeleteItem: React.FC<DeleteItemProps> = ({itemId}) => {
         </Text>
         <View style={styles.buttonContainer}>
           <GenericButton
-            title="Confirmar"
+            title="Cancel"
+            onPress={toggleModal}
+            color="#FFF"
+            backgroundColor={secondaryColor}
+            width={150}
+          />
+          <GenericButton
+            title="Confirm"
             onPress={handleDelete}
             disabled={loading}
             color="#FFF"
             backgroundColor="#000"
             width={150}
           />
-          <GenericButton
-            title="Cancelar"
-            onPress={toggleModal}
-            color="#FFF"
-            backgroundColor="red"
-            width={150}
-          />
         </View>
-        {loading && <ActivityIndicator size="large" color="#000" />}
+        {loading && <Loader  /> }
         {error && <Text style={styles.error}>{error}</Text>}
       </BottomSheet>
     </View>
@@ -87,6 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: fontSubtitleBold,
     marginBottom: 20,
+    color: '#000',
   },
   buttonContainer: {
     flexDirection: 'row',
