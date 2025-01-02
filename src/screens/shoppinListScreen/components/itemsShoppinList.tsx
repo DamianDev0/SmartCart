@@ -3,7 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  ActivityIndicator,
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -20,6 +19,7 @@ import {
   width,
 } from '../../../utils/styles';
 import useNavigation from '../../../hooks/useNavigation';
+import Loader from '../../../components/Loader';
 
 interface ShoppingListItemsProps {
   shoppingListId: string;
@@ -34,7 +34,7 @@ const ShoppingListItems: React.FC<ShoppingListItemsProps> = ({
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#000" />
+        <Loader />
       </View>
     );
   }
@@ -51,7 +51,7 @@ const ShoppingListItems: React.FC<ShoppingListItemsProps> = ({
     return (
       <View style={styles.noItemsContainer}>
         <Image
-          source={require('../../../assets/img/paint.png')}
+          source={require('../../../assets/img/achievement.png')}
           style={styles.noItemsImage}
         />
         <Text style={styles.noItemsText}>
@@ -75,7 +75,7 @@ const ShoppingListItems: React.FC<ShoppingListItemsProps> = ({
                 name: item.name,
                 description: item.description,
                 quantity: item.quantity,
-                category: item.category,
+                category: item.category || '',
                 amount: item.amount,
                 status: item.status,
                 createdAt: item.createdAt,
@@ -139,8 +139,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   noItemsImage: {
-    width: width * 0.8,
-    height: height * 0.29,
+    width: width * 0.7,
+    height: height * 0.25,
     marginBottom: 20,
   },
   noItemsText: {

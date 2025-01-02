@@ -6,13 +6,13 @@ export const {height} = Dimensions.get('screen');
 
 export const primaryColor = '#fffbf1';
 
-export const secondaryColor = '#728C5A';
+export const secondaryColor = '#85c1e9';
 
 export const terceryColor = '#000';
 
 export const fourthyCorlor = '#FFF';
 
-export const secondaryColorLigth = 'rgba( 114, 140, 90,0.25)';
+export const secondaryColorLigth = 'rgba(133, 193, 233,0.3)';
 
 export const fontTitle = 'Orbitron-Black';
 

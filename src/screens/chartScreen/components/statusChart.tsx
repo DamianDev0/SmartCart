@@ -1,10 +1,16 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, {useCallback} from 'react';
-import {StyleSheet, Text, View, ActivityIndicator} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {PieChart} from 'react-native-gifted-charts';
 import useShoppingStatistics from '../hooks/useStatsStatus';
-import {fontSubtitleBold, fontTextLigth, fontTitle} from '../../../utils/styles';
+import {
+  fontSubtitleBold,
+  fontTextLigth,
+  fontTitle,
+  secondaryColor,
+} from '../../../utils/styles';
 import {useFocusEffect} from '@react-navigation/native';
+import Loader from '../../../components/Loader';
 
 const StatusChart = () => {
   const {statistics, loading, error, fetchStatistics} = useShoppingStatistics();
@@ -18,7 +24,7 @@ const StatusChart = () => {
   if (loading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#000" />
+        <Loader color="#fff" />
       </View>
     );
   }
@@ -37,14 +43,14 @@ const StatusChart = () => {
   const pieData = [
     {
       value: purchased,
-      color: '#009FFF',
-      gradientCenterColor: '#006DFF',
+      color: secondaryColor,
+      gradientCenterColor: secondaryColor,
       focused: true,
     },
     {
       value: pending,
-      color: '#93FCF8',
-      gradientCenterColor: '#3BE9DE',
+      color: '#F29C6E',
+      gradientCenterColor: '#F29C6E',
     },
   ];
 
@@ -57,11 +63,11 @@ const StatusChart = () => {
       <>
         <View style={styles.legendRow}>
           <View style={styles.legendItem}>
-            {renderDot('#006DFF')}
+            {renderDot('#F29C6E')}
             <Text style={styles.legendText}>Purchased: {purchased}</Text>
           </View>
           <View style={styles.legendItem}>
-            {renderDot('#93FCF8')}
+            {renderDot(secondaryColor)}
             <Text style={styles.legendText}>Pending: {pending}</Text>
           </View>
         </View>
@@ -153,7 +159,7 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     fontSize: 12,
-    fontFamily: fontSubtitleBold
+    fontFamily: fontSubtitleBold,
   },
   container: {
     paddingVertical: 100,

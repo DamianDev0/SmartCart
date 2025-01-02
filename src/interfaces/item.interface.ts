@@ -5,7 +5,7 @@ export interface ItemRequest {
   description: string;
   amount: number;
   status: string;
-  category: string;
+  category?: string;
 }
 
 export interface ItemResponse {
@@ -13,7 +13,7 @@ export interface ItemResponse {
   name: string;
   description: string | null;
   quantity: number;
-  category: string;
+  category?: string;
   amount: number;
   status: string;
   createdAt: string;

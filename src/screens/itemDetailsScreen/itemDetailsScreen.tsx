@@ -9,7 +9,6 @@ import {
   fontTitle,
   height,
   primaryColor,
-  secondaryColor,
   secondaryColorLigth,
   width,
 } from '../../utils/styles';
@@ -66,11 +65,7 @@ const ItemDetailsScreen = () => {
             <Text style={styles.detail}>Category: {item.category}</Text>
           </View>
           <View style={styles.detailsRow}>
-            <AntDesign
-              name="checkcircleo"
-              size={20}
-              color="#000"
-            />
+            <AntDesign name="checkcircleo" size={20} color="#000" />
             <Text style={styles.detail}>Status: {item.status}</Text>
           </View>
           <View style={styles.detailsRow}>
@@ -124,11 +119,11 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: secondaryColorLigth,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     height: height * 0.5,
-    elevation: 10,
+    elevation: 1,
     shadowColor: '#000',
     borderWidth: 0.5,
     borderColor: '#000',
@@ -142,7 +137,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: fontTitle,
     marginBottom: 10,
-    color: secondaryColor,
+    color: '#000',
   },
   description: {
     fontSize: 14,
@@ -153,7 +148,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   hr: {
-    borderBottomColor: secondaryColorLigth,
+    borderBottomColor: '#000',
     borderBottomWidth: 2,
     marginBottom: 10,
   },
@@ -161,8 +156,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     color: '#000',
     fontFamily: fontTextLigth,
-    fontSize: 12,
+    fontSize: 14,
     marginLeft: 5,
+    textTransform: 'capitalize',
   },
   detailAmount: {
     marginBottom: 5,

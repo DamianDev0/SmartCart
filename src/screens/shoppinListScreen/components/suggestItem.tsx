@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  ActivityIndicator,
   Image,
   FlatList,
 } from 'react-native';
@@ -18,6 +17,8 @@ import {
   primaryColor,
   width,
 } from '../../../utils/styles';
+import Loader from '../../../components/Loader';
+import {phrases} from '../../../utils/data';
 
 interface SuggestItemsModalProps {
   shoppingListId: string;
@@ -26,6 +27,8 @@ interface SuggestItemsModalProps {
 const SuggestItems: React.FC<SuggestItemsModalProps> = ({shoppingListId}) => {
   const {loading, suggestions, isVisible, suggestItems, closeModal} =
     useSuggestItems();
+
+  const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
 
   const handlePress = () => {
     suggestItems(shoppingListId);
@@ -61,25 +64,26 @@ const SuggestItems: React.FC<SuggestItemsModalProps> = ({shoppingListId}) => {
         onPress={handlePress}
         disabled={loading}
         style={styles.button}>
-        <Icon name="robot-love-outline" size={30} color={loading ? '#ccc' : '#000'} />
+        <Icon
+          name="robot-love-outline"
+          size={30}
+          color={loading ? '#ccc' : '#000'}
+        />
         <Text style={styles.buttonText}>IA Suggest</Text>
       </TouchableOpacity>
 
       <BottomSheet
         isVisible={isVisible}
         onClose={closeModal}
-        height={750}
+        height={800}
         backgroundColor={primaryColor}>
         <View style={styles.content}>
+          <Text style={styles.phraseText}>{randomPhrase}</Text>
           <Image
             source={require('../../../assets/img/suggest.png')}
             style={styles.image}
           />
-          {loading ? (
-            <ActivityIndicator size="large" color="#000" />
-          ) : (
-            renderSuggestions()
-          )}
+          {loading ? <Loader /> : renderSuggestions()}
         </View>
       </BottomSheet>
     </View>
@@ -105,6 +109,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 15,
+  },
+  phraseText: {
+    fontSize: 12,
+    color: '#000',
+    fontFamily: fontTitle,
+    textAlign: 'center',
+    marginBottom: 15,
   },
   image: {
     width: width * 0.7,

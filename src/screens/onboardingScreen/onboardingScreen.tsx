@@ -7,18 +7,19 @@ import {
   height,
   width,
   primaryColor,
-  secondaryColor,
   terceryColor,
   fontTitle,
   fontSubtitle,
   fontTextLigth,
 } from '../../utils/styles';
 import useNavigation from '../../hooks/useNavigation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OnboardingScreen = () => {
   const navigation = useNavigation();
 
-  const handleSkipOrDone = () => {
+  const handleSkipOrDone = async () => {
+    await AsyncStorage.setItem('onboardingCompleted', 'true');
     navigation.navigate('Auth');
   };
 
@@ -92,7 +93,7 @@ const OnboardingScreen = () => {
           backgroundColor: primaryColor,
           image: (
             <Image
-              source={require('../../assets/img/shopping2.png')}
+              source={require('../../assets/img/save.png')}
               style={styles.imagebag}
             />
           ),
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
-    color: secondaryColor,
+    color: 'rgba(0,0,0,0.6)',
     fontFamily: fontSubtitle,
     marginBottom: 90,
     textAlign: 'center',

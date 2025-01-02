@@ -6,13 +6,19 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Image,
-  ActivityIndicator,
 } from 'react-native';
 import InputGeneric from '../../components/genericInput';
 import GenericDropdown from '../../components/dropDown';
 import useCreateItem from './hooks/useItem';
 import GenericButton from '../../components/genericButton';
-import {height, primaryColor, width} from '../../utils/styles';
+import {
+  fontSubtitleBold,
+  height,
+  primaryColor,
+  width,
+} from '../../utils/styles';
+import Loader from '../../components/Loader';
+import {useFocusEffect} from '@react-navigation/native';
 
 const CreateItemScreen = () => {
   const {
@@ -23,7 +29,14 @@ const CreateItemScreen = () => {
     handleCreateItem,
     loading,
     error,
+    fetchShoppingLists,
   } = useCreateItem();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchShoppingLists();
+    }, [fetchShoppingLists]),
+  );
 
   const shoppingListDropdownData = shoppingLists.map(list => ({
     label: list.name,
@@ -87,6 +100,7 @@ const CreateItemScreen = () => {
               width={330}
               height={45}
             />
+
             <GenericDropdown
               data={shoppingListDropdownData}
               selectedValue={itemData.shoppingListId}
@@ -95,9 +109,10 @@ const CreateItemScreen = () => {
               width={330}
               height={45}
             />
+
             <View style={styles.containerButton}>
               {loading ? (
-                <ActivityIndicator size="large" color="#000" />
+                <Loader />
               ) : (
                 <GenericButton
                   title="Create Item"
@@ -133,17 +148,24 @@ const styles = StyleSheet.create({
   },
   image: {
     width: width * 1,
-    height: height * 0.3,
+    height: height * 0.32,
     resizeMode: 'contain',
   },
   inputContainer: {
-    gap: 15,
+    gap: width * 0.032,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  noListsText: {
+    color: 'red',
+    fontFamily: fontSubtitleBold,
+    fontSize: 12,
+    textAlign: 'center',
+  },
   error: {
     color: 'red',
-    marginTop: 10,
+    fontFamily: fontSubtitleBold,
+    fontSize: 13,
   },
   containerButton: {
     width: width * 0.9,

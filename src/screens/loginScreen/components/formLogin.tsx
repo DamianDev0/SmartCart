@@ -1,15 +1,14 @@
 import React, {useEffect} from 'react';
 import {
   View,
-  ActivityIndicator,
   StyleSheet,
   ScrollView,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import {
   height,
   primaryColor,
-  secondaryColor,
   secondaryColorLigth,
   width,
 } from '../../../utils/styles';
@@ -17,6 +16,8 @@ import useLogin from '../hooks/useLogin';
 import InputGeneric from '../../../components/genericInput';
 import GenericButton from '../../../components/genericButton';
 import {CustomToast} from '../../../components/customToast';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Loader from '../../../components/Loader';
 
 const LoginForm = () => {
   const {
@@ -75,7 +76,7 @@ const LoginForm = () => {
             />
           </View>
           {loading ? (
-            <ActivityIndicator size="large" color="#000" />
+          <Loader  />
           ) : (
             <View style={styles.loginButton}>
               <GenericButton
@@ -86,14 +87,9 @@ const LoginForm = () => {
                 color="#FFFF"
               />
               {isBiometricSupported && (
-                <GenericButton
-                  title="Login with Fingerprint"
-                  onPress={loginWithFingerprint}
-                  disabled={loading}
-                  backgroundColor={secondaryColor}
-                  color="#FFFF"
-                  width={330}
-                />
+                <TouchableOpacity onPress={loginWithFingerprint}>
+                  <Icon name="finger-print-outline" size={38} color={'#000'} />
+                </TouchableOpacity>
               )}
             </View>
           )}
@@ -129,13 +125,22 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     alignItems: 'center',
     padding: 30,
+    borderColor: '#000',
+    borderWidth: 0.6,
+    elevation: 1,
   },
   loginButton: {
     alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: width * 0.8,
+    marginBottom: 40,
   },
   containerInputs: {
     alignItems: 'center',
-    gap: 20,
+    justifyContent: 'center',
+    marginTop: width * 0.05,
+    gap: width * 0.07,
   },
   biometricButton: {
     marginTop: 20,
