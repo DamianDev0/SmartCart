@@ -143,6 +143,26 @@ const shoppingListService = {
       return apiError;
     }
   },
+
+  deleteShoppingList: async (
+    shoppingListId: string,
+    token: string,
+  ): Promise<ApiResponse<null> | ApiError> => {
+    try {
+      const response = await apiClient.delete<ApiResponse<null>>(
+        `/shopping/${shoppingListId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      const apiError = handleApiError(error);
+      return apiError;
+    }
+  },
 };
 
 export default shoppingListService;

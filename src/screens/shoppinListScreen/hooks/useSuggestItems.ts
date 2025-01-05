@@ -17,7 +17,6 @@ const useSuggestItemsWithModal = () => {
   const suggestItems = async (shoppingListId: string) => {
     if (!token) {
       setError('Authentication token is missing.');
-      console.error('Token is missing.');
       return;
     }
 
@@ -46,7 +45,6 @@ const useSuggestItemsWithModal = () => {
     } catch (err: any) {
       if (err instanceof Error) {
         setError(err.message);
-        console.error('Error:', err.message);
         CustomToast({
           type: 'error',
           text1: 'Error',
@@ -73,7 +71,6 @@ const useSuggestItemsWithModal = () => {
 
   const closeModal = () => {
     setIsVisible(false);
-    console.log('Modal closed');
   };
 
   return {
