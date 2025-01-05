@@ -1,79 +1,158 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+# SmartCart
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-## Step 1: Start the Metro Server
+SmartCart is an AI-powered shopping management app designed to simplify and enhance your purchasing experience. It automatically sorts your items into categories, making your shopping lists organized and easy to manage. Additionally, SmartCart provides personalized recommendations based on your preferences and past purchases, helping you save time and discover new products you'll love.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Installation
 
-```bash
-# using npm
-npm start
 
-# OR using Yarn
-yarn start
-```
+## Installation and Execution Instructions
 
-## Step 2: Start your Application
+1. **Prerequisites**  
+   Ensure you have a React Native development environment properly configured on your system. This includes:  
+   - Node.js installed.  
+   - Android Studio and emulator or a connected Android device.  
+   - React Native CLI or Expo CLI (depending on your project setup).  
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+2. **Steps to Run the Application**  
+   Follow these steps to install and run the project:
 
-### For Android
+   ```bash
+   # Clone the project repository
+   git clone https://github.com/DamianDev0/SmartCart.git
 
-```bash
-# using npm
-npm run android
+   # Navigate to the project directory
+   cd SmartCart
 
-# OR using Yarn
-yarn android
-```
+   # Install the dependencies
+   npm install
 
-### For iOS
+   # Run the application on an Android emulator or device
+   npm run android
 
-```bash
-# using npm
-npm run ios
+## Main features
 
-# OR using Yarn
-yarn ios
-```
+# SmartCart App Features
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Discover the powerful functionalities of **SmartCart**, designed to enhance and simplify your shopping experience:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+---
 
-## Step 3: Modifying your App
+## 🌟 **Main Features**
 
-Now that you have successfully run the app, let's modify it.
+### 🛠️ **1. Onboarding**  
+   - 🎯 A welcoming and intuitive onboarding process.  
+   - 🚀 Guides new users through the app's core functionalities.  
+   - 📖 Provides a quick overview of managing purchases effectively.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+---
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+### 🔐 **2. Login and Register with Biometrics**  
+   - ✅ **Secure Authentication**: Log in or register using biometrics, including fingerprint or face recognition.  
+   - 🕒 **Effortless Access**: Avoid passwords for faster and safer login.  
 
-## Congratulations! :tada:
+---
 
-You've successfully run and modified your React Native App. :partying_face:
+### ✏️ **3. CRUD Items**  
+   Manage your shopping list with full control:  
+   - **Create**: Add new items with detailed categories and descriptions.  
+   - **Read**: View and sort your list with advanced filtering options.  
+   - **Update**: Edit item details like quantity, price, or category.  
+   - **Delete**: Easily remove items when no longer needed.  
 
-### Now what?
+---
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+### 📊 **4. Chart: Pending vs Purchased**  
+   - 🔍 Visualize your shopping progress with a dynamic chart.  
+   - 📈 Quickly see how many items are pending versus already purchased.
 
-# Troubleshooting
+---
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### 📅 **5. Chart: Purchases by Day**  
+   - 🗓️ Track your purchases over time with a daily analytics chart.  
+   - 📊 Gain insights into your spending patterns and habits.
 
-# Learn More
+---
 
-To learn more about React Native, take a look at the following resources:
+### 🤖 **6. Recommendations by AI**  
+   - 💡 Personalized suggestions tailored to your preferences.  
+   - 🛍️ Discover new items based on past purchases and user behavior.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+---
+
+### 🛒 **7. Slider: Recently Bought Items**  
+   - 🎞️ A sleek slider showcasing your recently purchased products.  
+   - 🔄 Quickly revisit or repurchase items with ease.
+
+---
+
+### 🏷️ **8. Classification of Categories by AI**  
+   - 🧠 Leverages AI to automatically classify items into categories.  
+   - 📂 Keeps your shopping list organized and easy to manage.  
+   - ⚡ Saves time by eliminating manual categorization.
+
+## Screens
+
+## 🚀 Onboarding 
+
+This is the first screen you’ll see, where we greet you and introduce the app’s key features. Manage your purchases, track your spending, and get personalized recommendations—all in one place
+
+<div style="display: flex; justify-content: space-evenly; gap: 10px;">
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112862/firstOnbarding_xhb1av.jpg" alt="Welcome Screen" width="250" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112865/secondOnboarding_r6gndb.jpg" alt="Welcome Screen" width="250" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112867/lastOnboarding_rwueey.jpg" alt="Welcome Screen" width="250" />
+</div>
+
+## 🔐 Auth
+
+This is the authentication screen, where you can easily sign up or log in to your account. You can use your fingerprint for quick and secure access, or choose to register using your email and password. Get started and manage your purchases seamlessly with SmartCart!
+
+<div style="display: flex; justify-content: space-evenly; gap: 10px;">
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112869/login_bq4lai.jpg" alt="login" width="300" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736113903/sign_xbw2xq.jpg" alt="signup" width="300" />
+</div>
+
+## 🏠 HomeScreen
+
+
+Welcome to your home screen! If it’s your first time here, you’ll notice that you haven’t made any purchases yet. To get started, simply click the shopping cart icon at the top to create your first shopping list. Once you’ve created a list and added your first item, you’ll start seeing the recent purchases you’ve made. Manage and track your purchases with ease, and let SmartCart help you stay organized!
+
+<div style="display: flex; justify-content: space-evenly; gap: 10px;">
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112871/homeEmpty_ehk55d.jpg" alt="empty" width="200" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112873/shoppinglistcreate_nucpue.jpg" alt="cart" width="200" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112875/homeshoppinList_a8rblh.jpg" alt="Welcome Screen" width="200" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112878/recentpursache_ujzupl.jpg" alt="Welcome Screen" width="200" />
+</div>
+
+## 🛍️ Item
+
+
+In the items screen, you can easily create a new item by filling in the necessary fields. But first, make sure you've created a shopping list by going to the cart view. Once your list is ready, you can start adding items to it. You can also view item details, where you’ll have the option to edit or delete them as needed.
+
+<div style="display: flex; justify-content: space-evenly; gap: 10px;">
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112876/createItem_nm0ufs.jpg" alt="form" width="200" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112880/detailsitem_rfcpwe.jpg" alt="details" width="200" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112882/edititem_evoy87.jpg" alt="edit" width="200" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112919/deleteItem_bbvn5h.jpg" alt="delete" width="200" />
+</div>
+
+## 🛒 Shopping Cart
+
+
+In the shopping list screen, you can view all the items in your cart. If you need to, you can easily remove the shopping cart. Additionally, SmartCart’s AI will provide personalized recommendations based on your shopping habits, helping you discover products that match your preferences.
+
+<div style="display: flex; justify-content: space-evenly; gap: 10px;">
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112921/detailsShoppinList_t5vwiu.jpg" alt="list" width="250" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112923/recommendIA_t0ykvo.jpg" alt="recommend" width="250" />
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112937/deleteShoppinlist_qrisrx.jpg" alt="delete" width="250" />
+
+</div>
+
+## 📊 Charts
+The charts help you track your purchases by providing a clear comparison between pending and completed purchases, giving you an overview of your shopping progress. Additionally, the purchases by day chart visualizes your spending over time, allowing you to identify patterns and trends in your shopping behavior. Use these insights to stay organized, manage your budget, and make smarter purchase decisions!
+
+<div style="display: flex; justify-content: center; gap: 10px;">
+  <img src="https://res.cloudinary.com/dpqbn1gqb/image/upload/v1736112957/charts_qiqpct.jpg" alt="chart" width="400" />
+</div>
