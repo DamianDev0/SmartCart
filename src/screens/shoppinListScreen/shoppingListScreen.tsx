@@ -4,6 +4,7 @@ import {Text, View, StyleSheet, Image} from 'react-native';
 import ShoppingListItems from './components/itemsShoppinList';
 import {fontTitle, height, primaryColor, width} from '../../utils/styles';
 import SuggestItems from './components/suggestItem';
+import DeleteShoppingList from './components/deleteShoppingListModal';
 
 const ShoppingListScreen = () => {
   const route = useRoute();
@@ -19,6 +20,9 @@ const ShoppingListScreen = () => {
         source={require('../../assets/img/eCommerce.png')}
         style={styles.headerImage}
       />
+      <View style={styles.deleteButton}>
+        <DeleteShoppingList shoppingListId={shoppinList.id} />
+      </View>
       <Text style={styles.text}>{shoppinList.name}</Text>
       <View style={styles.iconContainer}>
         <SuggestItems shoppingListId={shoppinList.id} />
@@ -53,7 +57,12 @@ const styles = StyleSheet.create({
     top: 0,
     left: 15,
     flexDirection: 'row',
-    width : width,
+    width: width,
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: width * -0.04,
+    right: 0,
   },
 });
 

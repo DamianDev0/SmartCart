@@ -43,14 +43,14 @@ const StatusChart = () => {
   const pieData = [
     {
       value: purchased,
-      color: secondaryColor,
-      gradientCenterColor: secondaryColor,
+      color: '#F29C6E',
+      gradientCenterColor: '#F29C6E',
       focused: true,
     },
     {
       value: pending,
-      color: '#F29C6E',
-      gradientCenterColor: '#F29C6E',
+      color: secondaryColor,
+      gradientCenterColor: secondaryColor,
     },
   ];
 
